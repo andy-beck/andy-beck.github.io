@@ -1,0 +1,56 @@
+<md-dialog aria-label="subscribe">
+  <form name="MailchimpSubscriptionForm" ng-controller="MailchimpSubscriptionCtrl">
+    <section ng-controller="subscribeFormCtrl">
+
+      <md-dialog-content>
+        <div class="md-dialog-content" ng-hide="mailchimp.result === 'success'">
+
+          <input class="hidden" type="hidden" ng-model="mailchimp.username" ng-init="mailchimp.username='andybeck'">
+          <input class="hidden" type="hidden" ng-model="mailchimp.dc" ng-init="mailchimp.dc='us12'">
+          <input class="hidden" type="hidden" ng-model="mailchimp.u" ng-init="mailchimp.u='7aa8ae5842b9264376360647d'">
+          <input class="hidden" type="hidden" ng-model="mailchimp.id" ng-init="mailchimp.id='d5112f425b'">
+
+          <h2 class="md-title">Subscribe for news &amp; exhibitions</h2>
+
+          <input ng-model="mailchimp.FNAME" type="hidden" name="fname" ng-maxlength="50" placeholder="first">
+          <input ng-model="mailchimp.LNAME" type="hidden" name="lname" ng-maxlength="50" placeholder="last">
+
+          <md-input-container class="md-block">
+            <label>Email</label>
+            <input ng-model="mailchimp.EMAIL" type="email" name="email" md-required="true" md-minlength="7" ng-maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+            <div ng-messages="MailchimpSubscriptionForm.EMAIL.$error" role="alert">
+              <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                Your email must be between 7 and 100 characters long and look like an e-mail address.
+              </div>
+            </div>
+            <!-- Show error message if MailChimp unsuccessfully added the email to the list. -->
+            <div ng-messages ng-show="mailchimp.result === 'error'" role="alert">
+              <div ng-message ng-bind-html="mailchimp.errorMessage"></div>
+            </div>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Name <em>(optional)</em></label>
+            <input ng-model="mailchimp.NAME" type="text" ng-maxlength="100" ng-change="change()">
+          </md-input-container>
+
+        </div>
+        <!-- Show success message if MailChimp returned successfully. -->
+        <div class="md-dialog-content" ng-show="mailchimp.result === 'success'" ng-cloak>
+          <h2 class="md-title">Thank you</h2>
+          <span ng-bind-html="mailchimp.successMessage"></span>
+        </div>
+      </md-dialog-content>
+
+      <md-dialog-actions>
+        <md-button ng-click="closeDialog()" ng-hide="mailchimp.result === 'success'">
+          Cancel
+        </md-button>
+        <md-button class="md-raised" ng-disabled="MailchimpSubscriptionForm.$invalid" ng-click="addSubscription(mailchimp)" ng-hide="mailchimp.result === 'success'">
+          Join
+        </md-button>
+      </md-dialog-actions>
+
+    </section>
+  </form>
+</md-dialog>
