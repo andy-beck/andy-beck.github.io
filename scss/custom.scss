@@ -440,7 +440,7 @@ md-input-container {
 
 // DETAIL VIEW
 // -------------------------
-.artwork-details {
+.details {
    h1 {
       font-family: 'Open Sans', sans-serif;
       font-size: $body-font-size-base;
@@ -454,7 +454,7 @@ md-input-container {
    }
    margin-bottom: 10px;
 }
-.artwork-image {
+.image {
    position: relative;
    width: auto;
    display: block;
@@ -480,22 +480,20 @@ md-input-container {
          transition: opacity .5s ease;
       }
    }
-   a {
-      opacity: .25;
-   }
    @media (min-width: $layout-breakpoint-sm) {
-      a {
+      .control {
          opacity: 0;
-      }
-      &:hover a {
-         opacity: .5;
-         &:hover {
-            opacity: 1;
+         :hover > & {
+            opacity: .5;
+            &:hover {
+               opacity: 1;
+            }
          }
       }
    }
 }
 .control {
+   cursor: pointer;
    transition: all .5s ease;
    position: absolute;
    top: 0;
@@ -503,11 +501,15 @@ md-input-container {
    left: 0;
    width: 20%;
    text-align: center;
+   opacity: .25;
    &.prev {
       span {
-         left: 15px;
+         left: 0;
+         @media (min-width: $layout-breakpoint-sm) {
+            left: 15px;
+         }
          &::before {
-	         left: 4px;
+	         left: 2px;
 	         transform: rotate(-135deg);
          }
       }
@@ -516,9 +518,12 @@ md-input-container {
       right: 0;
       left: auto;
       span {
-         right: 15px;
+         right: 0;
+         @media (min-width: $layout-breakpoint-sm) {
+            right: 15px;
+         }
          &::before {
-	         right: 4px;
+	         right: 2px;
 	         transform: rotate(45deg);
          }
       }
@@ -546,9 +551,9 @@ md-input-container {
 	      border-width: 2px 2px 0 0;
 	      position: relative;
 	      vertical-align: top;
-	      width: 16px;
-	      height: 16px;
-         margin-top: 12px;
+	      width: 10px;
+	      height: 10px;
+         margin-top: 14px;
       }
    }
 }
