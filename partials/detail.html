@@ -1,0 +1,38 @@
+<section ng-controller="DetailCtrl as detail" ng-cloak>
+
+  <div class="artwork-details">
+    <h1 ng-bind="item.title">&nbsp;</h1> <em ng-bind="(item.date|date:'yyyy')+', '+item.medium+', '+item.h+' x '+item.w+' cm'+' '+item.availability"></em>
+  </div>
+
+  <md-fab-speed-dial md-direction="down" class="md-scale md-fab-top-right" ng-class="{ 'md-is-open': detail.hover }" md-open="detail.isOpen" ng-mouseenter="detail.isOpen=true" ng-mouseleave="detail.isOpen=false">
+    <md-fab-trigger>
+      <md-button class="md-icon-button" aria-label="share">
+        <md-tooltip md-direction="left" md-visible="tooltipVisible">Share</md-tooltip>
+        <md-icon md-svg-src="../svg/share.svg" aria-label="share"></md-icon>
+      </md-button>
+    </md-fab-trigger>
+    <md-fab-actions>
+      <md-button aria-label="tweet" class="md-fab md-raised md-mini" ng-click="tweet(item)">
+        <md-tooltip md-direction="left" md-visible="tooltipVisible" md-autohide="false">tweet</md-tooltip>
+        <md-icon md-svg-src="../svg/twitter.svg" aria-label="tweet"></md-icon>
+      </md-button>
+      <md-button aria-label="like" class="md-fab md-raised md-mini" ng-click="like(item)">
+        <md-tooltip md-direction="left" md-visible="tooltipVisible" md-autohide="false">like</md-tooltip>
+        <md-icon md-svg-src="../svg/facebook.svg" aria-label="like"></md-icon>
+      </md-button>
+      <md-button aria-label="pin" class="md-fab md-raised md-mini" ng-click="pin(item)">
+        <md-tooltip md-direction="left" md-visible="tooltipVisible" md-autohide="false">pin</md-tooltip>
+        <md-icon md-svg-src="../svg/pinterest.svg" aria-label="pin"></md-icon>
+      </md-button>
+    </md-fab-actions>
+  </md-fab-speed-dial>
+
+  <div class="artwork-image" md-swipe-right="getPrev(prevItem)" md-swipe-left="getNext(nextItem)">
+    <a href="" ng-click="getPrev(prevItem)" class="control prev"><span title="&lt; {{prev.title}}"></span></a>
+    <a href="" ng-click="getNext(nextItem)" class="control next"><span title="{{next.title}} &gt;"></span></a>
+    <!--<img ng-src="images/{{item.image}}.jpg" alt="{{item.title}}" title="{{item.title}}">-->
+        <div class="spinner"></div>
+        <img src="http://placehold.it/{{(20*item.w)|number:0}}x{{(20*item.h)|number:0}}/ddd/fff?text={{item.title}}" alt="{{item.title}}" title="{{item.title}}" onload="imgLoaded(this)"/>
+  </div>
+
+</section>
