@@ -166,24 +166,29 @@ md-icon {
          background: $gray-lighter;
          border: none;
          margin: 0 (-$grid-gutter) 0 0;
+         top: 0;
+         width: 50px;
          padding: 22px 15px;
          position: relative;
          float: right;
          .icon_bar,
-         .icon_bar:before,
-         .icon_bar:after {
+         .icon_bar::before,
+         .icon_bar::after {
             background: $gray-dark;
             display: block;
-            position: relative;
+            position: absolute;
             content: '';
             border-radius: 1px;
             width: 20px;
             height: 3px;
-            &:before {
-               top: -6px;
+         }
+         .icon_bar {
+            position: relative;
+            &::before {
+               margin-top: -6px;
             }
-            &:after {
-               bottom: -3px;
+            &::after {
+               margin-top: 6px;
             }
          }
       }
@@ -561,6 +566,21 @@ md-input-container {
    }
 }
 
+// FOOTER
+// -------------------------
+.footer {
+   //@include border;
+   font-size: 85%;
+   height: 50px;
+   p {
+      margin: 0;
+      padding-top: 20px;
+      @media (max-width: $layout-breakpoint-xs - 1) {
+         text-align: center;
+      }
+   }
+}
+
 
 /*.share {
   position: absolute;
@@ -601,18 +621,3 @@ md-input-container {
          }
      }
 }*/
-
-// FOOTER
-// -------------------------
-.footer {
-   //@include border;
-   font-size: 85%;
-   height: 50px;
-   p {
-      margin: 0;
-      padding-top: 20px;
-      @media (max-width: $layout-breakpoint-xs - 1) {
-         text-align: center;
-      }
-   }
-}
