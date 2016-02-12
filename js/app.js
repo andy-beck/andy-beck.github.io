@@ -51,6 +51,19 @@ app.config(['$routeProvider',
 ]);
 
 
+app.directive("navBar", function () {
+   return {
+      templateUrl: "partials/nav.html"
+   };
+});
+
+app.directive("svgInclude", function () {
+   return {
+      templateUrl: "partials/svg.html"
+   };
+});
+
+
 app.run(['$rootScope',
   function ($rootScope) {
      $rootScope.page = {
@@ -93,8 +106,7 @@ app.factory('utilities', function () {
 });
 
 
-app.factory('sortData', ['$http', '$rootScope', '$filter', '$routeParams', 
-function ($http, $rootScope, $filter, $routeParams) {
+app.factory('sortData', ['$http', '$rootScope', '$filter', '$routeParams', function ($http, $rootScope, $filter, $routeParams) {
    var items = [];
    return {
       getItems: function () {
@@ -111,8 +123,8 @@ function ($http, $rootScope, $filter, $routeParams) {
             });
 
             /* remove duplicate categories */
-            categories = items.reduce(function (sum, i) {
-               if(sum.indexOf(i.category) < 0) sum.push(i.category);
+            categories = items.reduce(function (sum, item) {
+               if (sum.indexOf(item.category) < 0) sum.push(item.category);
                return sum;
             }, []);
 
@@ -130,12 +142,12 @@ function ($http, $rootScope, $filter, $routeParams) {
 
 app.animation('.slide', function () {
    return {
-      beforeAddClass: function(element, className, done) {
+      beforeAddClass: function (element, className, done) {
          if (className === 'ng-hide') {
             element.slideUp({ duration: 350 }, done);
          }
       },
-      removeClass: function(element, className, done) {
+      removeClass: function (element, className, done) {
          if (className === 'ng-hide') {
             element.hide().slideDown({ duration: 350 }, done);
          }
