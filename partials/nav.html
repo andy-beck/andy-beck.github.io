@@ -1,0 +1,37 @@
+<nav ng-controller="NavCtrl" class="navbar" role="navigation">
+   <div class="navbar_header">
+      <md-button class="navbar_toggle" ng-click="navShow = !navShow">
+         <label class="navbar_label">MENU</label>
+         <span class="icon_bar"></span>
+      </md-button>
+      <a class="navbar_brand" href="#/">
+         Andy Beck
+      </a>
+   </div>
+   <ul class="navbar_nav slide" ng-hide="navShow">
+      <li class="navbar_heading">
+         <md-button ng-click="page.subNavShow = !page.subNavShow">Gallery<span class="chevron"></span></md-button>
+         <ul class="slide" ng-show="page.subNavShow">
+            <li ng-repeat="category in categories" ng-class="getClass('/gallery/{{category | lowercase}}')"><md-button ng-href="#/gallery/{{category | lowercase}}">{{category}}</md-button></li>
+         </ul>
+      </li>
+      <li ng-class="getClass('/about')"><md-button ng-href="#/about">About</md-button></li>
+      <li ng-class="getClass('/news')"><md-button ng-href="#/news">News</md-button></li>
+      <li ng-class="getClass('/contact')"><md-button ng-href="#/contact">Contact</md-button></li>
+      <li ng-controller="subscribeCtrl" id="subscribe"><md-button ng-click="subscribe($event)" md-ripple-size="partial">Subscribe</md-button></li>
+      <li ng-controller="SocialCtrl" class="social" layout="row" layout-align-xs="space-around">
+         <md-button aria-label="follow on twitter" ng-click="socialUrl('https://twitter.com/@andynbeck')">
+            <md-tooltip md-direction="bottom">follow on twitter</md-tooltip>
+            <md-icon><svg viewBox="0 0 24 24"><use xlink:href="#twitter"></use></svg></md-icon>
+         </md-button>
+         <md-button aria-label="facebook page" ng-click="socialUrl('https://www.facebook.com/AndyBeckArt')">
+            <md-tooltip md-direction="bottom">facebook page</md-tooltip>
+            <md-icon><svg viewBox="0 0 24 24"><use xlink:href="#facebook"></use></svg></md-icon>
+         </md-button>
+         <md-button aria-label="follow on instagram" ng-click="socialUrl('http://www.instagram.com/andybeckartist')" flex-lt-sm="33">
+            <md-tooltip md-direction="bottom">follow on instagram</md-tooltip>
+            <md-icon><svg viewBox="0 0 24 24"><use xlink:href="#instagram"></use></svg></md-icon>
+         </md-button>
+      </li>
+   </ul>
+</nav>
