@@ -153,12 +153,14 @@ appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$
       $scope.url = $routeParams.itemUrl;
 
       sortData.getItems().then(function (data) {
-         $scope.items = data;
-      });
-      $scope.$on('updateCategory', function (events, data) {
+
+         /* filter items by category from parameters */
+         var items = $filter('filter')(data.items, {
+            category: $routeParams.itemCategory
+         });
 
          /* get item by matching url with parameters */
-         var item = $filter('filter')(data, {
+         var item = $filter('filter')(items, {
             url: $scope.url
          }, true)[0];
 
@@ -168,33 +170,33 @@ appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$
          $scope.page.setTitle(item.title);
 
          /* the index of the selected item in the array */
-         var currentIndex = data.indexOf(item);
+         var currentIndex = items.indexOf(item);
 
          /* find previous item */
          if (currentIndex > 0)
             $scope.prevItem = Number(currentIndex) - 1;
          else
-            $scope.prevItem = data.length - 1;
+            $scope.prevItem = items.length - 1;
 
          /* find next item */
-         if (currentIndex < data.length - 1)
+         if (currentIndex < items.length - 1)
             $scope.nextItem = Number(currentIndex) + 1;
          else
             $scope.nextItem = 0;
 
-         $scope.prev = data[$scope.prevItem];
-         $scope.next = data[$scope.nextItem];
+         $scope.prev = items[$scope.prevItem];
+         $scope.next = items[$scope.nextItem];
 
          /* view previous */
          $scope.getPrev = function (page) {
             $scope.page.setDirection('forward');
-            $location.url('/gallery/' + data[page].category.toLowerCase() + '/' + data[page].url);
+            $location.url('/gallery/' + items[page].category.toLowerCase() + '/' + items[page].url);
          };
 
          /* view next */
          $scope.getNext = function (page) {
             $scope.page.setDirection('backward');
-            $location.url('/gallery/' + data[page].category.toLowerCase() + '/' + data[page].url);
+            $location.url('/gallery/' + items[page].category.toLowerCase() + '/' + items[page].url);
          };
 
          /* tweet on twitter */
