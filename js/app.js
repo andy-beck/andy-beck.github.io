@@ -112,26 +112,16 @@ app.factory('sortData', ['$http', '$rootScope', '$filter', '$routeParams', funct
       getItems: function () {
          return $http.get('data/gallery.json').then(function (response) {
 
-            /* filter items by category from parameters */
-            items = $filter('filter')(response.data, {
-               category: $routeParams.itemCategory
-            });
-
+            items = response.data;
             /* sort items by date in descending order */
             items.sort(function (a, b) {
                return b.date.localeCompare(a.date);
             });
 
-            /* remove duplicate categories */
-            categories = items.reduce(function (sum, item) {
-               if (sum.indexOf(item.category) < 0) sum.push(item.category);
-               return sum;
-            }, []);
-
             $rootScope.$broadcast('updateCategory', items);
 
             return {
-               categories: categories, items: items
+               items: items
             };
          })
       },
@@ -154,3 +144,38 @@ app.animation('.slide', function () {
       }
    }
 });
+
+
+//app.animation('.slide', ['$animateCss',
+//  function ($animateCss) {
+//    return {
+//      addClass: function (element, className, done) {
+//        if (className == 'ng-hide') {
+//          var animator = $animateCss(element, {
+//            to: { height: '0px', opacity: 0 }
+//          });
+//          if (animator) {
+//            return animator.start().done(function () {
+//              element[0].style.height = '';
+//              done();
+//            });
+//          }
+//        }
+//        done();
+//      },
+//      removeClass: function (element, className, done) {
+//        if (className == 'ng-hide') {
+//          var height = element[0].offsetHeight;
+//          var animator = $animateCss(element, {
+//            from: { height: '0px', opacity: 0 },
+//            to: { height: height + 'px', opacity: 1 }
+//          });
+//          if (animator) {
+//            return animator.start().done(done);
+//          }
+//        }
+//        done();
+//      }
+//    };
+//  }
+//]);
