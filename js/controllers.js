@@ -4,6 +4,7 @@
 
 var appControllers = angular.module('appControllers', []);
 
+
 /* FOOTER */
 appControllers.controller('FooterCtrl', ['$scope', '$sce',
    function ($scope, $sce) {
@@ -13,17 +14,25 @@ appControllers.controller('FooterCtrl', ['$scope', '$sce',
 
 
 /* NAVIAGTION auto close on click & set current to active */
-appControllers.controller('NavCtrl', ['$scope', '$location', 'sortData', 
-   function ($scope, $location, sortData) {
+appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortData',
+   function ($scope, $location, $filter, sortData) {
 
+      /* get menu items from data */
       sortData.getItems().then(function (data) {
-         console.log('NavCtrl: ' + data.categories);
-         $scope.categories = data.categories;
+         /* remove duplicate categories */
+         $scope.categories = data.items.reduce(function (sum, item) {
+            if (sum.indexOf(item.category) < 0) sum.push(item.category);
+            return sum;
+         }, []);
+      }).catch(function () {
+         $scope.error = 'unable to get the items';
       });
+
       $scope.$on('$routeChangeSuccess', function () {
          $scope.navShow = true;
       });
 
+      /* set current menu item active */
       $scope.getClass = function (path) {
          if (path === '/') {
             if ($location.path() === '/') {
@@ -38,6 +47,7 @@ appControllers.controller('NavCtrl', ['$scope', '$location', 'sortData',
             return "";
          }
       }
+
    }
 ]);
 
@@ -114,19 +124,19 @@ appControllers.controller('ContactCtrl', ['$scope', 'utilities',
 
 
 /* LIST VIEW controller */
-appControllers.controller('ListCtrl', ['$scope', 'sortData',
-   function ($scope, sortData) {
+appControllers.controller('ListCtrl', ['$scope', '$filter', '$routeParams', 'sortData',
+   function ($scope, $filter, $routeParams, sortData) {
 
       $scope.page.showSubNav(true);
       $scope.page.setDirection('none');
 
       sortData.getItems().then(function (data) {
-         console.log('ListCtrl: '+data.categories);
-         $scope.title = data.categories;
-         $scope.page.setTitle($scope.title);
-      });
-      sortData.getItems().then(function (items) {
-         $scope.items = items.items;
+          /* filter items by category from parameters */
+          $scope.items = $filter('filter')(data.items, {
+             category: $routeParams.itemCategory
+          });
+          $scope.title = $scope.items[0].category;
+          $scope.page.setTitle($scope.title);
       });
 
    }
@@ -155,7 +165,7 @@ appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$
          $scope.item = item;
 
          /* page title */
-         $scope.page.setTitle($scope.item.title);
+         $scope.page.setTitle(item.title);
 
          /* the index of the selected item in the array */
          var currentIndex = data.indexOf(item);
