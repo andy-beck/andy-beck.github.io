@@ -107,6 +107,15 @@ dl {
   opacity: 0;
 }
 
+md-icon {
+   svg {
+      position: relative;
+      top: -1px;
+      width: 24px;
+      height: 24px;
+   }
+}
+
 md-fab-speed-dial.md-fab-top-right {
    svg {
       fill: $gray-dark;
@@ -116,7 +125,7 @@ md-fab-speed-dial.md-fab-top-right {
    }
    top: -45px;
    right: 0;
-   @media (min-width: $layout-breakpoint-sm) {
+   @media (min-width: $layout-breakpoint-xs) {
       right: 5px;
       .md-fab-action-item .md-raised {
          opacity: .5;
@@ -124,15 +133,6 @@ md-fab-speed-dial.md-fab-top-right {
             opacity: .8;
          }
       }
-   }
-}
-
-md-icon {
-   svg {
-      position: relative;
-      top: -1px;
-      width: 24px;
-      height: 24px;
    }
 }
 
@@ -435,7 +435,7 @@ md-input-container {
       }
    }
 }
-.image{
+.image {
    position: relative;
    width: auto;
    display: block;
@@ -462,7 +462,7 @@ md-input-container {
          transition: opacity .5s ease;
       }
    }
-   @media (min-width: $layout-breakpoint-sm) {
+   @media (min-width: $layout-breakpoint-xs) {
       .control {
          opacity: 0;
       }
@@ -489,7 +489,7 @@ md-input-container {
    &.prev {
       .md-button {
          left: -5px;
-         @media (min-width: $layout-breakpoint-sm) {
+         @media (min-width: $layout-breakpoint-xs) {
             left: 5px;
          }
          &::before {
@@ -503,7 +503,7 @@ md-input-container {
       left: auto;
       .md-button {
          right: -5px;
-         @media (min-width: $layout-breakpoint-sm) {
+         @media (min-width: $layout-breakpoint-xs) {
             right: 5px;
          }
          &::before {
@@ -518,7 +518,7 @@ md-input-container {
          bottom: -50px;
          box-shadow: none !important;
       }
-      @media (min-width: $layout-breakpoint-sm) {
+      @media (min-width: $layout-breakpoint-xs) {
          display: inline-block;
          top: 50%;
          margin-top: -20px;
@@ -580,44 +580,3 @@ md-input-container {
       }
    }
 }
-
-
-/*.share {
-  position: absolute;
-  right: 0;
-  margin-top: -50px;
-  md-menu-item>.md-button md-icon {
-    @include border;
-  }
-}
-
-.network {
-  margin: 16px 0 7px;
-  a {
-    display: inline-block;
-    margin: 0 10px 10px 0;
-    width: 40px;
-    height: 40px;
-    padding: 11px;
-    fill: $gray-dark;
-    &:hover {
-      fill: white;
-      background-color: $gray-dark;
-    }
-  }
-}
-*/
-
-/*md-fab-speed-dial {
-     md-fab-action-item .md-raised {
-         transition: all 0.3s ease-in-out;
-         transform: scale(1);
-     }
-     &.md-scale.ng-hide,
-     &.md-fling.ng-hide {
-         display: flex !important;
-         md-fab-action-item .md-raised {
-             transform: scale(0);
-         }
-     }
-}*/
