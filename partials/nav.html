@@ -10,9 +10,9 @@
    </div>
    <ul class="navbar_nav slide" ng-hide="navShow">
       <li class="navbar_heading">
-         <md-button ng-click="page.subNavShow = !page.subNavShow">Gallery<span class="chevron"></span></md-button>
-         <ul class="slide" ng-show="page.subNavShow">
-            <li ng-repeat="category in categories" ng-class="getClass('/gallery/{{category | lowercase}}')"><md-button ng-href="#/gallery/{{category | lowercase}}">{{category}}</md-button></li>
+         <md-button id="subnav-toggle" ng-click="page.subNavShow = !page.subNavShow">Gallery<span class="chevron"></span></md-button>
+         <ul class="slide" ng-show="page.subNavShow" click-outside="closeThis()" outside-if-not="subnav-toggle">
+            <li ng-repeat="category in categories" ng-class="getClass('/gallery/{{category | lowercase}}')"><md-button ng-click="page.subNavShow = !page.subNavShow" ng-href="#/gallery/{{category | lowercase}}">{{category}}</md-button></li>
          </ul>
       </li>
       <li ng-class="getClass('/about')"><md-button ng-href="#/about">About</md-button></li>
