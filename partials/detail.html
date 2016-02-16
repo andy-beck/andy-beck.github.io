@@ -1,32 +1,32 @@
 <section>
-  
+
    <div class="details">
       <h1 ng-bind="item.title">&nbsp;</h1> <em ng-cloak ng-bind="(item.date|date:'yyyy')+', '+item.medium+', '+item.h+' x '+item.w+' cm'+' '+item.availability"></em>
-   </div>
-  
-   <div class="image" md-swipe-right="getPrev(prevItem)" md-swipe-left="getNext(nextItem)">
       <md-fab-speed-dial md-direction="down" class="md-scale md-fab-top-right" ng-class="{ 'md-is-open': detail.hover }" md-open="detail.shareOpen" ng-mouseenter="detail.shareOpen=true" ng-mouseleave="detail.shareOpen=false">
          <md-fab-trigger>
             <md-button class="md-icon-button" aria-label="share">
-               <md-tooltip md-direction="left" md-visible="tooltipVisible">Share</md-tooltip>
+               <md-tooltip md-direction="left" class="ie_hide" md-visible="tooltipVisible" md-autohide="true">Share</md-tooltip>
                <md-icon><svg viewBox="0 0 24 24"><use xlink:href="#share"></use></svg></md-icon>
             </md-button>
          </md-fab-trigger>
          <md-fab-actions>
             <md-button aria-label="tweet" class="md-fab md-raised md-mini" ng-click="tweet(item)">
-               <md-tooltip md-direction="left" md-visible="tooltipVisible" md-autohide="false">tweet</md-tooltip>
+               <md-tooltip md-direction="left" class="ie_hide">tweet</md-tooltip>
                <md-icon><svg viewBox="0 0 24 24"><use xlink:href="#twitter"></use></svg></md-icon>
             </md-button>
             <md-button aria-label="like" class="md-fab md-raised md-mini" ng-click="like(item)">
-               <md-tooltip md-direction="left" md-visible="tooltipVisible" md-autohide="false">like</md-tooltip>
+               <md-tooltip md-direction="left" class="ie_hide">like</md-tooltip>
                <md-icon><svg viewBox="0 0 24 24"><use xlink:href="#facebook"></use></svg></md-icon>
             </md-button>
             <md-button aria-label="pin" class="md-fab md-raised md-mini" ng-click="pin(item)">
-               <md-tooltip md-direction="left" md-visible="tooltipVisible" md-autohide="false">pin</md-tooltip>
+               <md-tooltip md-direction="left" class="ie_hide">pin</md-tooltip>
                <md-icon><svg viewBox="0 0 24 24"><use xlink:href="#pinterest"></use></svg></md-icon>
             </md-button>
          </md-fab-actions>
       </md-fab-speed-dial>
+   </div>
+
+   <div class="image" md-swipe-right="getPrev(prevItem)" md-swipe-left="getNext(nextItem)">
       <div ng-click="getPrev(prevItem)" class="control prev">
          <md-button aria-label="tweet" class="md-fab md-raised md-mini">
             <md-tooltip md-direction="right" md-visible="tooltipVisible" md-autohide="false">{{prev.title}}</md-tooltip>
@@ -40,6 +40,6 @@
       <div class="spinner"></div>
       <!--<img ng-src="images/{{item.image}}.jpg" alt="{{item.title}}" onload="imgLoaded(this)">-->
       <img src="http://placehold.it/{{(20*item.w)|number:0}}x{{(20*item.h)|number:0}}/ddd/fff?text={{item.title}}" alt="{{item.title}}" onload="imgLoaded(this)"/>
-  </div>
+   </div>
 
 </section>
