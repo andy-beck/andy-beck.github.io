@@ -10,6 +10,18 @@
   <title data-ng-bind="page.title"></title>
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
   <link rel="stylesheet" href="/css/theme.css">
+</head>
+<body layout="column" flex="grow" layout-fill ng-cloak>
+   <div layout="column" layout-gt-sm="row" flex="noshrink">
+      <div flex-gt-sm="25">
+         <nav-bar></nav-bar>
+      </div>
+      <div flex-gt-sm="75" ng-class="page.direction" style="position:relative;">
+         <div ng-view class="view" layout="column" flex="grow"></div>
+      </div>
+   </div>
+   <footer></footer>
+   <svg-include></svg-include>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
@@ -22,25 +34,5 @@
   <script src="http://cdn.rawgit.com/keithio/angular-mailchimp/master/angular-mailchimp.js"></script>
   <script src="/js/app.js"></script>
   <script src="/js/controllers.js"></script>
-</head>
-<body ng-clock>
-   <div class="wrap">
-      <div class="container">
-         <div layout="column" layout-gt-xs="row">
-            <div class="col_sidebar" flex-gt-xs="25" flex="100">
-               <nav-bar></nav-bar>
-            </div>
-            <div class="col_main" ng-class="page.direction" flex-gt-xs="75" flex="100">
-               <div ng-view class="view"></div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <footer class="footer">
-      <div class="container">
-         <p ng-controller="FooterCtrl" ng-bind-html="footer"></p>
-      </div>
-   </footer>
-   <svg-include></svg-include>
 </body>
 </html>
