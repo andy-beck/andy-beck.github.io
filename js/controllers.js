@@ -1,6 +1,6 @@
 'use strict';
 
-/* Controllers */
+/* CONTROLLERS */
 
 var appControllers = angular.module('appControllers', []);
 
@@ -14,7 +14,7 @@ appControllers.controller('FooterCtrl', ['$scope', '$sce',
 
 
 /* NAVIAGTION auto close on click & set current to active */
-appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortData',
+appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortData', 
    function ($scope, $location, $filter, sortData) {
 
       /* get menu items from data */
@@ -46,6 +46,11 @@ appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortDat
          } else {
             return "";
          }
+      }
+
+      /* close subnav when clicking outside of it */
+      $scope.closeThis = function () {
+         $scope.page.showSubNav(false);
       }
 
    }
@@ -127,11 +132,11 @@ appControllers.controller('ContactCtrl', ['$scope', 'utilities',
 appControllers.controller('ListCtrl', ['$scope', '$filter', '$routeParams', 'sortData',
    function ($scope, $filter, $routeParams, sortData) {
 
-      $scope.page.showSubNav(true);
+      //$scope.page.showSubNav(true);
       $scope.page.setDirection('none');
 
       sortData.getItems().then(function (data) {
-          /* filter items by category from parameters */
+          /* filter items by category from category parameter */
           $scope.items = $filter('filter')(data.items, {
              category: $routeParams.itemCategory
           });
@@ -147,27 +152,22 @@ appControllers.controller('ListCtrl', ['$scope', '$filter', '$routeParams', 'sor
 appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$location', 'sortData',
    function ($scope, $routeParams, $filter, $location, sortData) {
 
-      $scope.page.showSubNav(true);
+      //$scope.page.showSubNav(true);
       this.shareOpen = false;
 
       $scope.url = $routeParams.itemUrl;
 
       sortData.getItems().then(function (data) {
 
-         /* filter items by category from parameters */
+         /* get all items in category, filtered by category parameter */
          var items = $filter('filter')(data.items, {
             category: $routeParams.itemCategory
          });
 
-         /* get item by matching url with parameters */
+         /* get current item, filtered by url parameter */
          var item = $filter('filter')(items, {
             url: $scope.url
          }, true)[0];
-
-         $scope.item = item;
-
-         /* page title */
-         $scope.page.setTitle(item.title);
 
          /* the index of the selected item in the array */
          var currentIndex = items.indexOf(item);
@@ -184,6 +184,9 @@ appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$
          else
             $scope.nextItem = 0;
 
+         /* set scopes */
+         $scope.page.setTitle(item.title);
+         $scope.item = item;
          $scope.prev = items[$scope.prevItem];
          $scope.next = items[$scope.nextItem];
 
