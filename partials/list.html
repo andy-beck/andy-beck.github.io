@@ -3,7 +3,7 @@
    <h1 ng-bind="title"></h1>
 
   <div class="grid" layout="row" layout-wrap>
-    <div class="thumb" ng-repeat="item in items" flex-gt-xs="33" flex="100">
+    <div class="thumb" ng-repeat="item in items" flex-xs="100" flex="33">
       <a href="#/gallery/{{item.category | lowercase}}/{{item.url}}">
         <div class="spinner"></div>
         <img src="http://placehold.it/350x280/ddd/fff?text={{item.title}}" alt="{{item.title}}" title="{{item.title}}" onload="imgLoaded(this)" />
