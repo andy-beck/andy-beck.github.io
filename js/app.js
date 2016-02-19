@@ -18,6 +18,11 @@ var app = angular.module('app', [
 ]);
 
 
+app.constant('settings', {
+   title: 'Andrew Beck'
+});
+
+
 app.config(['$routeProvider',
    function ($routeProvider) {
       $routeProvider.
@@ -187,24 +192,24 @@ app.factory('sortData', ['$http',
 }]);
 
 
+
 /* RUN */
-app.run(['$rootScope', function ($rootScope) {
+app.run(['$rootScope', 'settings', function ($rootScope, settings) {
    $rootScope.page = {
-        setTitle: function (title) {
-           this.title = title + ' | Andy Beck';
-        },
-        setDirection: function (direction) {
-           this.direction = direction;
-        },
-        showSubNav: function (subNavShow) {
-           this.subNavShow = subNavShow;
-        }
-     }
-     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        $rootScope.page.title = current.$$route ? current.$$route.title + ' | Andy Beck' : 'Andy Beck';
-     });
-  }
-]);
+      setTitle: function (title) {
+         this.title = title + ' | ' + settings.title;
+      },
+      setDirection: function (direction) {
+         this.direction = direction;
+      },
+      showSubNav: function (subNavShow) {
+         this.subNavShow = subNavShow;
+      }
+   }
+   $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+      $rootScope.page.title = current.$$route ? current.$$route.title + ' | ' + settings.title : settings.title;
+   });
+}]);
 
 
 /* ANIMATION */
