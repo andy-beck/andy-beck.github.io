@@ -6,17 +6,18 @@ var appControllers = angular.module('appControllers', []);
 
 
 /* FOOTER */
-appControllers.controller('FooterCtrl', ['$scope', '$sce',
-   function ($scope, $sce) {
-      $scope.footer = $sce.trustAsHtml('&copy; 2008-' + new Date().getFullYear() + ' Andy Beck');
+appControllers.controller('FooterCtrl', ['$scope', '$sce', 'settings',
+   function ($scope, $sce, settings) {
+      $scope.footer = $sce.trustAsHtml('&copy; 2008-' + new Date().getFullYear() + ' ' + settings.title);
    }
 ]);
 
 
 /* NAVIAGTION auto close on click & set current to active */
-appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortData', 
-   function ($scope, $location, $filter, sortData) {
+appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortData', 'settings', 
+   function ($scope, $location, $filter, sortData, settings) {
 
+      $scope.title = settings.title;
       /* get menu items from data */
       sortData.getItems().then(function (data) {
          /* remove duplicate categories */
