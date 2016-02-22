@@ -35,7 +35,7 @@ appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortDat
 
       /* set current menu item active */
       $scope.getClass = function (path) {
-         Analytics.pageView();
+         //Analytics.pageView();
          if (path === '/') {
             if ($location.path() === '/') {
                return "active";
@@ -151,8 +151,8 @@ appControllers.controller('ListCtrl', ['$scope', '$filter', '$routeParams', 'sor
 
 
 /* DETAIL VIEW controller */
-appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$location', 'sortData',
-   function ($scope, $routeParams, $filter, $location, sortData) {
+appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$location', 'sortData', 'Analytics', 
+   function ($scope, $routeParams, $filter, $location, sortData, Analytics) {
 
       //$scope.page.showSubNav(true);
       this.shareOpen = false;
@@ -191,6 +191,8 @@ appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$
          $scope.item = item;
          $scope.prev = items[$scope.prevItem];
          $scope.next = items[$scope.nextItem];
+
+         Analytics.pageView();
 
          /* view previous */
          $scope.getPrev = function (page) {
