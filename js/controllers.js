@@ -36,6 +36,7 @@ appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortDat
 
       /* set current menu item active */
       $scope.getClass = function (path) {
+         Analytics.trackPage();
          if (path === '/') {
             if ($location.path() === '/') {
                return "active";
@@ -48,7 +49,6 @@ appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortDat
          } else {
             return "";
          }
-         Analytics.trackPage();
       }
 
       /* close subnav when clicking outside of it */
@@ -194,6 +194,8 @@ appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$
          $scope.prev = items[$scope.prevItem];
          $scope.next = items[$scope.nextItem];
 
+         Analytics.trackPage('/gallery/' + item.category.toLowerCase() + '/' + item.url, item.title);
+
          /* view previous */
          $scope.getPrev = function (page) {
             $scope.page.setDirection('forward');
@@ -221,8 +223,6 @@ appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$
          $scope.pin = function (item) {
             window.open('http://www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fandybeck.co.uk/gallery/' + item.category.toLowerCase() + '/' + item.url + '&media=http%3A%2F%2Fandybeck.co.uk/images/' + item.image + '.jpg&description=Andy+Beck+-+' + item.title, '_blank', 'width=750, height=540');
          };
-
-         Analytics.trackPage('/gallery/' + item.category.toLowerCase() + '/' + item.url, item.title);
 
       });
 
