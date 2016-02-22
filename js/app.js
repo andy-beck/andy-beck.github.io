@@ -14,8 +14,8 @@ var app = angular.module('app', [
   'ngAnimate',
   'ngMaterial',
   'appControllers',
-  'mailchimp',
-  'angular-google-analytics'
+  'angular-google-analytics',
+  'mailchimp'
 ]);
 
 
@@ -62,7 +62,6 @@ app.config(['$routeProvider',
 
 app.config(['AnalyticsProvider', 
    function (AnalyticsProvider) {
-      // Set a single account
       AnalyticsProvider.setAccount('UA-5805009-5');
 }]);
 
