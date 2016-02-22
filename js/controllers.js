@@ -18,7 +18,7 @@ appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortDat
    function ($scope, $location, $filter, sortData, settings, Analytics) {
 
       $scope.title = settings.title;
-      Analytics.trackPage();
+
       /* get menu items from data */
       sortData.getItems().then(function (data) {
          /* remove duplicate categories */
@@ -48,6 +48,7 @@ appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortDat
          } else {
             return "";
          }
+         Analytics.trackPage();
       }
 
       /* close subnav when clicking outside of it */
