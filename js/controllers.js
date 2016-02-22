@@ -194,7 +194,7 @@ appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$
 
          //Analytics.getUrl();
          //Analytics.pageView();
-         Analytics.trackPage('/video/detail/XXX', 'Video XXX');
+         Analytics.trackPage('/video/detail/XXX', item.title);
 
          /* view previous */
          $scope.getPrev = function (page) {
