@@ -200,8 +200,6 @@ app.factory('sortData', ['$http',
 
 
 /* RUN */
-app.run(function(Analytics) {});
-
 app.run(['$rootScope', 'settings', function ($rootScope, settings) {
    $rootScope.page = {
       setTitle: function (title) {
@@ -218,6 +216,8 @@ app.run(['$rootScope', 'settings', function ($rootScope, settings) {
       $rootScope.page.title = current.$$route ? current.$$route.title + ' | ' + settings.title : settings.title;
    });
 }]);
+
+app.run(function(Analytics) {});
 
 
 /* ANIMATION */
