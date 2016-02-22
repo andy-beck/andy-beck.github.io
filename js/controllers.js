@@ -70,8 +70,8 @@ appControllers.controller('SocialCtrl', ['$scope',
 
 
 /* SUBSCRIBE DIALOG controller */
-appControllers.controller('subscribeCtrl', ['$scope', '$mdDialog',
-   function ($scope, $mdDialog) {
+appControllers.controller('subscribeCtrl', ['$scope', '$mdDialog', 'Analytics',
+   function ($scope, $mdDialog, Analytics) {
       Analytics.trackEvent('subscribe', 'clicked', 'open');
       $scope.subscribe = function ($event) {
          $mdDialog.show({
