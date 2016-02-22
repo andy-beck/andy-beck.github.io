@@ -6,18 +6,17 @@ var appControllers = angular.module('appControllers', []);
 
 
 /* FOOTER */
-appControllers.controller('FooterCtrl', ['$scope', '$sce', 'settings',
-   function ($scope, $sce, settings) {
+appControllers.controller('FooterCtrl', ['$scope', '$sce', 'settings', 'Analytics',
+   function ($scope, $sce, settings, Analytics) {
       $scope.footer = $sce.trustAsHtml('&copy; 2008-' + new Date().getFullYear() + ' ' + settings.title);
+      Analytics.pageView();
    }
 ]);
 
 
 /* NAVIAGTION auto close on click & set current to active */
-appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortData', 'settings', 'Analytics',
-   function ($scope, $location, $filter, sortData, settings, Analytics) {
-
-      Analytics.pageView();
+appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortData', 'settings',
+   function ($scope, $location, $filter, sortData, settings) {
 
       $scope.title = settings.title;
       /* get menu items from data */
