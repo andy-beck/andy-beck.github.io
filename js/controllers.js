@@ -35,7 +35,6 @@ appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortDat
 
       /* set current menu item active */
       $scope.getClass = function (path) {
-         Analytics.trackPage();
          if (path === '/') {
             if ($location.path() === '/') {
                return "active";
@@ -48,6 +47,7 @@ appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortDat
          } else {
             return "";
          }
+         Analytics.trackPage();
       }
 
       /* close subnav when clicking outside of it */
@@ -70,7 +70,7 @@ appControllers.controller('SocialCtrl', ['$scope',
 
 
 /* SUBSCRIBE DIALOG controller */
-appControllers.controller('subscribeCtrl', ['$scope', '$mdDialog', 
+appControllers.controller('subscribeCtrl', ['$scope', '$mdDialog',
    function ($scope, $mdDialog) {
       $scope.subscribe = function ($event) {
          $mdDialog.show({
@@ -102,12 +102,12 @@ appControllers.controller('PageCtrl', ['$scope',
 /* SUBSCRIBE VIEW controller */
 appControllers.controller("subscribeFormCtrl", ["$scope", "utilities", 'Analytics',
    function ($scope, utilities, Analytics) {
-      Analytics.trackEvent('subscribe', 'clicked');
       $scope.change = function () {
          var newName = utilities.splitName($scope.mailchimp.NAME);
          $scope.mailchimp.FNAME = newName.first_name;
          $scope.mailchimp.LNAME = newName.last_name;
       };
+      Analytics.trackEvent('subscribe', 'clicked');
    }
 ]);
 
@@ -222,7 +222,6 @@ appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$
          };
 
       });
-
 
       Analytics.trackPage('/gallery/' + item.category.toLowerCase() + '/' + item.url, item.title);
 
