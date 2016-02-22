@@ -70,9 +70,8 @@ appControllers.controller('SocialCtrl', ['$scope',
 
 
 /* SUBSCRIBE DIALOG controller */
-appControllers.controller('subscribeCtrl', ['$scope', '$mdDialog', 'Analytics',
-   function ($scope, $mdDialog, Analytics) {
-      Analytics.trackEvent('subscribe', 'opened');
+appControllers.controller('subscribeCtrl', ['$scope', '$mdDialog', 
+   function ($scope, $mdDialog) {
       $scope.subscribe = function ($event) {
          $mdDialog.show({
             targetEvent: $event,
@@ -102,14 +101,15 @@ appControllers.controller('PageCtrl', ['$scope',
 
 
 /* SUBSCRIBE VIEW controller */
-appControllers.controller("subscribeFormCtrl", ["$scope", "utilities",
-  function ($scope, utilities) {
-    $scope.change = function () {
-      var newName = utilities.splitName($scope.mailchimp.NAME);
-      $scope.mailchimp.FNAME = newName.first_name;
-      $scope.mailchimp.LNAME = newName.last_name;
-    };
-  }
+appControllers.controller("subscribeFormCtrl", ["$scope", "utilities", 'Analytics',
+   function ($scope, utilities, Analytics) {
+      Analytics.trackEvent('subscribe', 'opened');
+      $scope.change = function () {
+         var newName = utilities.splitName($scope.mailchimp.NAME);
+         $scope.mailchimp.FNAME = newName.first_name;
+         $scope.mailchimp.LNAME = newName.last_name;
+      };
+   }
 ]);
 
 
