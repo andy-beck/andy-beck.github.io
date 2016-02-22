@@ -71,23 +71,24 @@ appControllers.controller('SocialCtrl', ['$scope',
 
 /* SUBSCRIBE DIALOG controller */
 appControllers.controller('subscribeCtrl', ['$scope', '$mdDialog',
-  function ($scope, $mdDialog) {
-    $scope.subscribe = function ($event) {
-      $mdDialog.show({
-        targetEvent: $event,
-        controller: DialogCtrl,
-        templateUrl: 'partials/subscribe.html',
-        openFrom: '#subscribe',
-        closeTo: '#subscribe',
-        clickOutsideToClose: true
-      });
-    };
-    function DialogCtrl($scope, $mdDialog) {
-      $scope.closeDialog = function () {
-        $mdDialog.cancel();
+   function ($scope, $mdDialog) {
+      Analytics.trackEvent('subscribe', 'clicked', 'open');
+      $scope.subscribe = function ($event) {
+         $mdDialog.show({
+            targetEvent: $event,
+            controller: DialogCtrl,
+            templateUrl: 'partials/subscribe.html',
+            openFrom: '#subscribe',
+            closeTo: '#subscribe',
+            clickOutsideToClose: true
+         });
       };
-    };    
-  }
+      function DialogCtrl($scope, $mdDialog) {
+         $scope.closeDialog = function () {
+            $mdDialog.cancel();
+         };
+      };
+   }
 ]);
 
 
@@ -191,9 +192,6 @@ appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$
          $scope.item = item;
          $scope.prev = items[$scope.prevItem];
          $scope.next = items[$scope.nextItem];
-
-         //Analytics.getUrl();
-         //Analytics.pageView();
 
          /* view previous */
          $scope.getPrev = function (page) {
