@@ -18,6 +18,7 @@ appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortDat
    function ($scope, $location, $filter, sortData, settings, Analytics) {
 
       $scope.title = settings.title;
+      Analytics.trackPage();
       /* get menu items from data */
       sortData.getItems().then(function (data) {
          /* remove duplicate categories */
@@ -47,7 +48,6 @@ appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortDat
          } else {
             return "";
          }
-         Analytics.trackPage();
       }
 
       /* close subnav when clicking outside of it */
@@ -107,7 +107,7 @@ appControllers.controller("subscribeFormCtrl", ["$scope", "utilities", 'Analytic
          $scope.mailchimp.FNAME = newName.first_name;
          $scope.mailchimp.LNAME = newName.last_name;
       };
-      Analytics.trackEvent('subscribe', 'clicked');
+      //Analytics.trackEvent('subscribe', 'clicked');
    }
 ]);
 
