@@ -83,7 +83,6 @@ appControllers.controller('subscribeCtrl', ['$scope', '$mdDialog',
          });
       };
       function DialogCtrl($scope, $mdDialog) {
-         Analytics.trackEvent('subscribe', 'cancelled');
          $scope.closeDialog = function () {
             $mdDialog.cancel();
          };
@@ -103,7 +102,7 @@ appControllers.controller('PageCtrl', ['$scope',
 /* SUBSCRIBE VIEW controller */
 appControllers.controller("subscribeFormCtrl", ["$scope", "utilities", 'Analytics',
    function ($scope, utilities, Analytics) {
-      Analytics.trackEvent('subscribe', 'opened');
+      Analytics.trackEvent('subscribe', 'clicked');
       $scope.change = function () {
          var newName = utilities.splitName($scope.mailchimp.NAME);
          $scope.mailchimp.FNAME = newName.first_name;
