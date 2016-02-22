@@ -14,8 +14,10 @@ appControllers.controller('FooterCtrl', ['$scope', '$sce', 'settings',
 
 
 /* NAVIAGTION auto close on click & set current to active */
-appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortData', 'settings', 
-   function ($scope, $location, $filter, sortData, settings) {
+appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortData', 'settings', 'Analytics',
+   function ($scope, $location, $filter, sortData, settings, Analytics) {
+
+      Analytics.pageView();
 
       $scope.title = settings.title;
       /* get menu items from data */
