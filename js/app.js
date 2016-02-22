@@ -19,7 +19,7 @@ var app = angular.module('app', [
 
 
 app.constant('settings', {
-   title: 'Andrew Beck'
+   title: 'Andy Beck'
 });
 
 
