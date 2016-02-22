@@ -6,10 +6,9 @@ var appControllers = angular.module('appControllers', []);
 
 
 /* FOOTER */
-appControllers.controller('FooterCtrl', ['$scope', '$sce', 'settings', 'Analytics',
-   function ($scope, $sce, settings, Analytics) {
+appControllers.controller('FooterCtrl', ['$scope', '$sce', 'settings',
+   function ($scope, $sce, settings) {
       $scope.footer = $sce.trustAsHtml('&copy; 2008-' + new Date().getFullYear() + ' ' + settings.title);
-      Analytics.pageView();
    }
 ]);
 
@@ -32,11 +31,11 @@ appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortDat
 
       $scope.$on('$routeChangeSuccess', function () {
          $scope.navShow = true;
-         Analytics.pageView();
       });
 
       /* set current menu item active */
       $scope.getClass = function (path) {
+         Analytics.pageView();
          if (path === '/') {
             if ($location.path() === '/') {
                return "active";
