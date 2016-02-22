@@ -200,6 +200,8 @@ app.factory('sortData', ['$http',
 
 
 /* RUN */
+app.run(function(Analytics) {});
+
 app.run(['$rootScope', 'settings', function ($rootScope, settings) {
    $rootScope.page = {
       setTitle: function (title) {
