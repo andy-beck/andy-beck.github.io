@@ -194,7 +194,6 @@ appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$
 
          //Analytics.getUrl();
          //Analytics.pageView();
-         Analytics.trackPage('/gallery/' + item.category.toLowerCase() + '/' + item.url, item.title);
 
          /* view previous */
          $scope.getPrev = function (page) {
@@ -225,6 +224,9 @@ appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$
          };
 
       });
+
+
+      Analytics.trackPage('/gallery/' + item.category.toLowerCase() + '/' + item.url, item.title);
 
    }
 ]);
