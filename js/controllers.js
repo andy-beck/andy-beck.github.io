@@ -102,12 +102,12 @@ appControllers.controller('PageCtrl', ['$scope',
 /* SUBSCRIBE VIEW controller */
 appControllers.controller("subscribeFormCtrl", ["$scope", "utilities", 'Analytics',
    function ($scope, utilities, Analytics) {
+      Analytics.trackEvent('subscribe', 'clicked');
       $scope.change = function () {
          var newName = utilities.splitName($scope.mailchimp.NAME);
          $scope.mailchimp.FNAME = newName.first_name;
          $scope.mailchimp.LNAME = newName.last_name;
       };
-      //Analytics.trackEvent('subscribe', 'clicked');
    }
 ]);
 
@@ -221,9 +221,9 @@ appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$
             window.open('http://www.pinterest.com/pin/create/button/?url=http%3A%2F%2Fandybeck.co.uk/gallery/' + item.category.toLowerCase() + '/' + item.url + '&media=http%3A%2F%2Fandybeck.co.uk/images/' + item.image + '.jpg&description=Andy+Beck+-+' + item.title, '_blank', 'width=750, height=540');
          };
 
-      });
+         Analytics.trackPage('/gallery/' + item.category.toLowerCase() + '/' + item.url, item.title);
 
-      Analytics.trackPage('/gallery/' + item.category.toLowerCase() + '/' + item.url, item.title);
+      });
 
    }
 ]);
