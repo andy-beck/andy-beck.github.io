@@ -72,7 +72,7 @@ appControllers.controller('SocialCtrl', ['$scope',
 /* SUBSCRIBE DIALOG controller */
 appControllers.controller('subscribeCtrl', ['$scope', '$mdDialog', 'Analytics',
    function ($scope, $mdDialog, Analytics) {
-      Analytics.trackEvent('subscribe', 'clicked', 'open');
+      Analytics.trackEvent('subscribe', 'opened');
       $scope.subscribe = function ($event) {
          $mdDialog.show({
             targetEvent: $event,
@@ -84,6 +84,7 @@ appControllers.controller('subscribeCtrl', ['$scope', '$mdDialog', 'Analytics',
          });
       };
       function DialogCtrl($scope, $mdDialog) {
+         Analytics.trackEvent('subscribe', 'cancelled');
          $scope.closeDialog = function () {
             $mdDialog.cancel();
          };
