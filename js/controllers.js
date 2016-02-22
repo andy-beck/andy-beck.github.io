@@ -192,8 +192,8 @@ appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$
          $scope.prev = items[$scope.prevItem];
          $scope.next = items[$scope.nextItem];
 
-         Analytics.pageView();
          Analytics.getUrl();
+         Analytics.pageView();
 
          /* view previous */
          $scope.getPrev = function (page) {
