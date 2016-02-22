@@ -35,7 +35,7 @@ appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortDat
 
       /* set current menu item active */
       $scope.getClass = function (path) {
-         //Analytics.pageView();
+         Analytics.trackPage();
          if (path === '/') {
             if ($location.path() === '/') {
                return "active";
