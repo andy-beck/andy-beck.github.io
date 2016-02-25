@@ -4,7 +4,7 @@
          <label class="navbar_label">MENU</label>
          <span class="icon_bar"></span>
       </md-button>
-      <a class="navbar_brand" href="#/">
+      <a class="navbar_brand" href="/">
          {{title}}
       </a>
    </div>
@@ -12,12 +12,12 @@
       <li class="navbar_heading">
          <md-button id="subnav-toggle" ng-click="page.subNavShow = !page.subNavShow">Gallery<span class="chevron"></span></md-button>
          <ul class="slide" ng-show="page.subNavShow" click-outside="closeThis()" outside-if-not="subnav-toggle">
-            <li ng-repeat="category in categories" ng-class="getClass('/gallery/{{category | lowercase}}')"><md-button ng-click="page.subNavShow = !page.subNavShow" ng-href="#/gallery/{{category | lowercase}}">{{category}}</md-button></li>
+            <li ng-repeat="category in categories" ng-class="getClass('/gallery/{{category | lowercase}}')"><md-button ng-click="page.subNavShow = !page.subNavShow" ng-href="/gallery/{{category | lowercase}}">{{category}}</md-button></li>
          </ul>
       </li>
-      <li ng-class="getClass('/about')"><md-button ng-href="#/about">About</md-button></li>
-      <li ng-class="getClass('/news')"><md-button ng-href="#/news">News</md-button></li>
-      <li ng-class="getClass('/contact')"><md-button ng-href="#/contact">Contact</md-button></li>
+      <li ng-class="getClass('/about')"><md-button ng-href="/about">About</md-button></li>
+      <li ng-class="getClass('/news')"><md-button ng-href="/news">News</md-button></li>
+      <li ng-class="getClass('/contact')"><md-button ng-href="/contact">Contact</md-button></li>
       <li ng-controller="subscribeCtrl" id="subscribe"><md-button ng-click="subscribe($event)" md-ripple-size="partial">Subscribe</md-button></li>
       <li ng-controller="SocialCtrl" class="social" layout="row" layout-align-xs="space-around">
          <md-button aria-label="follow on twitter" ng-click="socialUrl('https://twitter.com/@andynbeck')">
