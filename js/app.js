@@ -25,45 +25,56 @@ app.constant('settings', {
 
 
 /* CONFIG */
-app.config(['$routeProvider',
-   function ($routeProvider) {
-      $routeProvider.
-      when('/gallery/:itemCategory', {
-         templateUrl: 'partials/list.html',
-         controller: 'ListCtrl'
-      }).
-      when('/gallery/:itemCategory/:itemUrl', {
-         templateUrl: 'partials/detail.html',
-         controllerAs: 'detail',
-         controller: 'DetailCtrl'
-      }).
-      when('/about', {
-         title: 'About',
-         templateUrl: 'partials/about.html',
-         controller: 'PageCtrl'
-      }).
-      when('/news', {
-         title: 'News',
-         templateUrl: 'partials/news.html',
-         controller: 'PageCtrl'
-      }).
-      when('/contact', {
-         title: 'Contact',
-         templateUrl: 'partials/contact.html',
-         controller: 'ContactCtrl'
-      }).
-      otherwise({
-         redirectTo: '/',
-         templateUrl: 'partials/home.html',
-         controller: 'PageCtrl'
-      });
-   }
-]);
-
 app.config(['AnalyticsProvider', 
    function (AnalyticsProvider) {
       AnalyticsProvider.setAccount('UA-5805009-5');
-}]);
+   }
+]);
+
+app.config(['$routeProvider', '$locationProvider', '$provide',
+   function ($routeProvider, $locationProvider, $provide) {
+
+      $routeProvider
+         .when('/gallery/:itemCategory', {
+            templateUrl: 'partials/list.html',
+            controller: 'ListCtrl'
+         })
+         .when('/gallery/:itemCategory/:itemUrl', {
+            templateUrl: 'partials/detail.html',
+            controllerAs: 'detail',
+            controller: 'DetailCtrl'
+         })
+         .when('/about', {
+            title: 'About',
+            templateUrl: 'partials/about.html',
+            controller: 'PageCtrl'
+         })
+         .when('/news', {
+            title: 'News',
+            templateUrl: 'partials/news.html',
+            controller: 'PageCtrl'
+         })
+         .when('/contact', {
+            title: 'Contact',
+            templateUrl: 'partials/contact.html',
+            controller: 'ContactCtrl'
+         })
+         .otherwise({
+            redirectTo: '/',
+            templateUrl: 'partials/home.html',
+            controller: 'PageCtrl'
+         });
+
+      $locationProvider
+         .html5Mode(true);
+
+      /*$provide.decorator('$sniffer', function ($delegate) {
+         $delegate.history = false; // set false to spoof Hashbang in HTML5 Mode
+         return $delegate;
+      });*/
+
+   }
+]);
 
 
 /* DIRECTIVES */
@@ -217,7 +228,7 @@ app.run(['$rootScope', 'settings', function ($rootScope, settings) {
    });
 }]);
 
-app.run(function(Analytics) {});
+app.run(function (Analytics) { });
 
 
 /* ANIMATION */
