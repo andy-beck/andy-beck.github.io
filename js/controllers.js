@@ -4,22 +4,6 @@
 
 var appControllers = angular.module('appControllers', []);
 
-/* NEWS */
-appControllers.controller('NewsCtrl', ['$scope', '$http',
-   function ($scope, $http) {
-      
-    var blog = this;
-    blog.posts = {};
-    
-    $http.get("https://www.googleapis.com/blogger/v3/blogs/143883877191975751/posts?key=AIzaSyDdeNYWKdaWa3X-PqIetejh2-92MbbygZ0")
-         .then(function(response) {
-            blog.posts = response.data;
-            $scope.posts = blog.posts;
-            console.log(blog.posts);
-         });
-   }
-]);
-
 
 /* FOOTER */
 appControllers.controller('FooterCtrl', ['$scope', '$sce', 'settings',
@@ -145,6 +129,23 @@ appControllers.controller('ContactCtrl', ['$scope', 'utilities',
     //}
     //var example = $scope.splitName($scope.data.full_name);
   }
+]);
+
+
+/* NEWS VIEW */
+appControllers.controller('NewsCtrl', ['$scope', '$http',
+   function ($scope, $http) {
+
+      var posts = {};
+
+      $http.get("https://www.googleapis.com/blogger/v3/blogs/143883877191975751/posts?key=AIzaSyBv-fK-x3-ZvA4CrLiRp4smi_75kd258SM")
+           .then(function (response) {
+              posts = response.data;
+              $scope.posts = posts.items;
+              console.log(posts.items[0]);
+              //console.log(posts.items[0].url);
+           });
+   }
 ]);
 
 
