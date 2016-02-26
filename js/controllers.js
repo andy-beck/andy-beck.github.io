@@ -4,6 +4,17 @@
 
 var appControllers = angular.module('appControllers', []);
 
+/* NEWS */
+appControllers.controller('NewsCtrl', ['$scope', '$http',
+   function ($scope, $http) {
+      $http.get("https://www.googleapis.com/blogger/v3/blogs/143883877191975751/posts?key=AIzaSyDdeNYWKdaWa3X-PqIetejh2-92MbbygZ0")
+         .success(function(responses) {$scope.post = responses.response.posts;});
+         //AIzaSyDdeNYWKdaWa3X-PqIetejh2-92MbbygZ0
+      });
+   }
+]);
+
+
 
 /* FOOTER */
 appControllers.controller('FooterCtrl', ['$scope', '$sce', 'settings',
