@@ -15,7 +15,7 @@ appControllers.controller('NewsCtrl', ['$scope', '$http',
          .success(function(data) {
             blog.posts = data;
          });
-         console.log(blog.posts);
+         console.log(blog.posts[0]);
    }
 ]);
 
