@@ -12,6 +12,7 @@ function imgLoaded(img) {
 var app = angular.module('app', [
   'ngRoute',
   'ngAnimate',
+  'ngSanitize',
   'ngMaterial',
   'appControllers',
   'angular-google-analytics',
