@@ -28,7 +28,7 @@ app.constant('settings', {
 /* CONFIG */
 app.config(['AnalyticsProvider', 
    function (AnalyticsProvider) {
-      AnalyticsProvider.setAccount('UA-5805009-5');
+      AnalyticsProvider.setAccount('UA-74356457-1');
    }
 ]);
 
