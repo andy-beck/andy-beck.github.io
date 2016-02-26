@@ -1,13 +1,12 @@
 <section>
 
-  <h1>News</h1>
+   <h1>News and Upcoming shows</h1>
 
-  <p>Current Exhibitions</p>
-  
-  <div ng-repeat="post in posts">
-    <p>title: {{post}}</p>
-  </div>
-  
-  <p>More news</p>
+   <div ng-repeat="post in posts" class="news">
+      <h2>{{post.title}}</h2>
+      <span ng-bind-html="post.content"></span>
+   </div>
+
+   <a href="http://andybeckstudio.blogspot.co.uk/" class="md-button">News archive</a>
 
 </section>
