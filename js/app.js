@@ -52,7 +52,7 @@ app.config(['$routeProvider', '$locationProvider', '$provide',
          .when('/news', {
             title: 'News',
             templateUrl: 'partials/news.html',
-            controller: 'PageCtrl'
+            controller: 'NewsCtrl'
          })
          .when('/contact', {
             title: 'Contact',
