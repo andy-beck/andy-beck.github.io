@@ -14,7 +14,7 @@ appControllers.controller('NewsCtrl', ['$scope', '$http',
     $http.get("https://www.googleapis.com/blogger/v3/blogs/143883877191975751/posts?key=AIzaSyDdeNYWKdaWa3X-PqIetejh2-92MbbygZ0")
          .then(function(response) {
             blog.posts = response.data;
-            $scope.blogs = blog.posts;
+            $scope.posts = blog.posts;
             console.log(blog.posts);
          });
    }
