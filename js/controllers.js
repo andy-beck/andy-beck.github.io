@@ -2,22 +2,22 @@
 
 /* CONTROLLERS */
 
-var appControllers = angular.module('appControllers', []);
+var appCtrl = angular.module('appCtrl', []);
 
 
 /* FOOTER */
-appControllers.controller('FooterCtrl', ['$scope', '$sce', 'settings',
+appCtrl.controller('FooterCtrl', ['$scope', '$sce', 'settings',
    function ($scope, $sce, settings) {
-      $scope.footer = $sce.trustAsHtml('&copy; 2008-' + new Date().getFullYear() + ' ' + settings.title);
+      $scope.footer = $sce.trustAsHtml('&copy; 2008-' + new Date().getFullYear() + ' ' + settings.site_title);
    }
 ]);
 
 
 /* NAVIAGTION auto close on click & set current to active */
-appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortData', 'settings', 'Analytics',
+appCtrl.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortData', 'settings', 'Analytics',
    function ($scope, $location, $filter, sortData, settings, Analytics) {
 
-      $scope.title = settings.title;
+      $scope.title = settings.site_title;
 
       /* get menu items from data */
       sortData.getItems().then(function (data) {
@@ -61,7 +61,7 @@ appControllers.controller('NavCtrl', ['$scope', '$location', '$filter', 'sortDat
 
 
 /* SOCIAL LINKS controller */
-appControllers.controller('SocialCtrl', ['$scope',
+appCtrl.controller('SocialCtrl', ['$scope',
   function ($scope) {
     $scope.socialUrl = function (url) {
       window.open(url, '_blank');
@@ -71,7 +71,7 @@ appControllers.controller('SocialCtrl', ['$scope',
 
 
 /* SUBSCRIBE DIALOG controller */
-appControllers.controller('subscribeCtrl', ['$scope', '$mdDialog',
+appCtrl.controller('subscribeCtrl', ['$scope', '$mdDialog',
    function ($scope, $mdDialog) {
       $scope.subscribe = function ($event) {
          $mdDialog.show({
@@ -93,7 +93,7 @@ appControllers.controller('subscribeCtrl', ['$scope', '$mdDialog',
 
 
 /* DEFAULT VIEW controller */
-appControllers.controller('PageCtrl', ['$scope',
+appCtrl.controller('PageCtrl', ['$scope',
   function ($scope) {
     $scope.page.setDirection('none');
   }
@@ -101,7 +101,7 @@ appControllers.controller('PageCtrl', ['$scope',
 
 
 /* SUBSCRIBE VIEW controller */
-appControllers.controller("subscribeFormCtrl", ["$scope", "utilities", 'Analytics',
+appCtrl.controller("subscribeFormCtrl", ["$scope", "utilities", 'Analytics',
    function ($scope, utilities, Analytics) {
       Analytics.trackEvent('subscribe', 'clicked');
       $scope.change = function () {
@@ -114,7 +114,7 @@ appControllers.controller("subscribeFormCtrl", ["$scope", "utilities", 'Analytic
 
 
 /* CONTACT VIEW controller */
-appControllers.controller('ContactCtrl', ['$scope', 'utilities', 
+appCtrl.controller('ContactCtrl', ['$scope', 'utilities', 
   function ($scope, utilities) {
     $scope.page.setDirection('none');
     $scope.change = function () {
@@ -133,24 +133,23 @@ appControllers.controller('ContactCtrl', ['$scope', 'utilities',
 
 
 /* NEWS VIEW */
-appControllers.controller('NewsCtrl', ['$scope', '$http',
-   function ($scope, $http) {
-
-      var posts = {};
-
-      $http.get("https://www.googleapis.com/blogger/v3/blogs/143883877191975751/posts?key=AIzaSyBv-fK-x3-ZvA4CrLiRp4smi_75kd258SM")
-           .then(function (response) {
-              posts = response.data;
-              $scope.posts = posts.items;
-              console.log(posts.items[0]);
-              //console.log(posts.items[0].url);
-           });
+appCtrl.controller('NewsCtrl', ['$scope', '$http', 'settings',
+   function ($scope, $http, settings) {
+      var posts = [];
+      var query_params = 'labels=news&maxResults=5&orderBy=published';
+      $http.get('https://www.googleapis.com/blogger/v3/blogs/' + settings.blog_id + '/posts?' + query_params + '&key=' + settings.api_key)
+         .then(function (response) {
+            posts = response.data.items;
+            $scope.items = posts;
+            //console.log(posts[0].url);
+         });
+      //console.log($scope);
    }
 ]);
 
 
 /* LIST VIEW controller */
-appControllers.controller('ListCtrl', ['$scope', '$filter', '$routeParams', 'sortData',
+appCtrl.controller('ListCtrl', ['$scope', '$filter', '$routeParams', 'sortData',
    function ($scope, $filter, $routeParams, sortData) {
 
       //$scope.page.showSubNav(true);
@@ -170,7 +169,7 @@ appControllers.controller('ListCtrl', ['$scope', '$filter', '$routeParams', 'sor
 
 
 /* DETAIL VIEW controller */
-appControllers.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$location', 'sortData', 'Analytics', 
+appCtrl.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$location', 'sortData', 'Analytics', 
    function ($scope, $routeParams, $filter, $location, sortData, Analytics) {
 
       //$scope.page.showSubNav(true);
