@@ -25,7 +25,7 @@ app.constant('settings', {
    site_title: 'Andy Beck',
    tracking_id: 'UA-74356457-1',
    blog_id: '143883877191975751',
-   api_key: 'xxxxx'
+   api_key: 'AIzaSyBv-fK-x3-ZvA4CrLiRp4smi_75kd258SM'
 });
 
 
