@@ -14,21 +14,25 @@ var app = angular.module('app', [
   'ngAnimate',
   'ngSanitize',
   'ngMaterial',
-  'appControllers',
+  'appCtrl',
   'angular-google-analytics',
   'mailchimp'
 ]);
 
 
+/* CONSTANTS */
 app.constant('settings', {
-   title: 'Andy Beck'
+   site_title: 'Andy Beck',
+   tracking_id: 'UA-74356457-1',
+   blog_id: '143883877191975751',
+   api_key: 'xxxxx'
 });
 
 
 /* CONFIG */
-app.config(['AnalyticsProvider', 
-   function (AnalyticsProvider) {
-      AnalyticsProvider.setAccount('UA-74356457-1');
+app.config(['AnalyticsProvider', 'settings',
+   function (AnalyticsProvider, settings) {
+      AnalyticsProvider.setAccount(settings.tracking_id);
    }
 ]);
 
@@ -96,6 +100,17 @@ app.directive('svgInclude', function () {
       templateUrl: 'partials/svg.html'
    };
 });
+
+app.directive('animateOnLoad', ['$animateCss', function ($animateCss) {
+   return {
+      'link': function (scope, element) {
+         $animateCss(element, {
+            'event': 'enter',
+            structural: true
+         }).start();
+      }
+   };
+}]);
 
 app.directive('clickOutside', ['$document', '$parse', clickOutside]);
    //github.com/IamAdamJowett/angular-click-outside
@@ -188,8 +203,7 @@ app.factory('utilities', function () {
    }
 });
 
-app.factory('sortData', ['$http',
-   function ($http) {
+app.factory('sortData', ['$http', function ($http) {
    var items = [];
    return {
       getItems: function () {
@@ -215,7 +229,7 @@ app.factory('sortData', ['$http',
 app.run(['$rootScope', 'settings', function ($rootScope, settings) {
    $rootScope.page = {
       setTitle: function (title) {
-         this.title = title + ' | ' + settings.title;
+         this.title = title + ' | ' + settings.site_title;
       },
       setDirection: function (direction) {
          this.direction = direction;
@@ -225,7 +239,7 @@ app.run(['$rootScope', 'settings', function ($rootScope, settings) {
       }
    }
    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-      $rootScope.page.title = current.$$route ? current.$$route.title + ' | ' + settings.title : settings.title;
+      $rootScope.page.title = current.$$route ? current.$$route.title + ' | ' + settings.site_title : settings.site_title;
    });
 }]);
 
