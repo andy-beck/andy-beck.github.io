@@ -1,12 +1,13 @@
 <section>
 
-   <h1>News and Upcoming shows</h1>
-
-   <div ng-repeat="post in posts" class="news">
-      <h2>{{post.title}}</h2>
-      <span ng-bind-html="post.content"></span>
+   <div layout="row" layout-align="end center">
+      <h1 flex>News and upcoming shows</h1>
+      <md-button ng-href="http://andybeckstudio.blogspot.co.uk/" target="_blank">Studio blog</md-button>
    </div>
-
-   <a href="http://andybeckstudio.blogspot.co.uk/" class="md-button">News archive</a>
+   
+   <div ng-repeat="item in items" class="news_item repeat_animation" animate-on-load>
+      <h2>{{item.title}}</h2>
+      <span ng-bind-html="item.content"></span>
+   </div>
 
 </section>
