@@ -94,47 +94,55 @@ appCtrl.controller('subscribeCtrl', ['$scope', '$mdDialog',
 
 /* DEFAULT VIEW controller */
 appCtrl.controller('PageCtrl', ['$scope',
-  function ($scope) {
-    $scope.page.setDirection('none');
-  }
+   function ($scope) {
+      $scope.page.setDirection('none');
+   }
 ]);
 
 
 /* SUBSCRIBE VIEW controller */
 appCtrl.controller("subscribeFormCtrl", ["$scope", "utilities", 'Analytics',
    function ($scope, utilities, Analytics) {
+
       Analytics.trackEvent('subscribe', 'clicked');
+
       $scope.change = function () {
          var newName = utilities.splitName($scope.mailchimp.NAME);
          $scope.mailchimp.FNAME = newName.first_name;
          $scope.mailchimp.LNAME = newName.last_name;
       };
+
    }
 ]);
 
 
 /* CONTACT VIEW controller */
-appCtrl.controller('ContactCtrl', ['$scope', 'utilities', 
-  function ($scope, utilities) {
-    $scope.page.setDirection('none');
-    $scope.change = function () {
-      var newName = utilities.splitName($scope.contact.NAME);
-      $scope.contact.FNAME = newName.first_name;
-      $scope.contact.LNAME = newName.last_name;
-    };
-    //$scope.data = {
-    //  full_name: 'Joe Middle Name Smith',
-    //  first_name: '',
-    //  last_name: '',
-    //}
-    //var example = $scope.splitName($scope.data.full_name);
-  }
+appCtrl.controller('ContactCtrl', ['$scope', 'utilities',
+   function ($scope, utilities) {
+
+      $scope.page.setDirection('none');
+
+      $scope.change = function () {
+         var newName = utilities.splitName($scope.contact.NAME);
+         $scope.contact.FNAME = newName.first_name;
+         $scope.contact.LNAME = newName.last_name;
+      };
+      //$scope.data = {
+      //  full_name: 'Joe Middle Name Smith',
+      //  first_name: '',
+      //  last_name: '',
+      //}
+      //var example = $scope.splitName($scope.data.full_name);
+   }
 ]);
 
 
 /* NEWS VIEW */
 appCtrl.controller('NewsCtrl', ['$scope', '$http', 'settings',
    function ($scope, $http, settings) {
+
+      $scope.page.setDirection('none');
+
       var posts = [];
       var query_params = 'labels=news&maxResults=5&orderBy=published';
       $http.get('https://www.googleapis.com/blogger/v3/blogs/' + settings.blog_id + '/posts?' + query_params + '&key=' + settings.api_key)
@@ -152,16 +160,15 @@ appCtrl.controller('NewsCtrl', ['$scope', '$http', 'settings',
 appCtrl.controller('ListCtrl', ['$scope', '$filter', '$routeParams', 'sortData',
    function ($scope, $filter, $routeParams, sortData) {
 
-      //$scope.page.showSubNav(true);
       $scope.page.setDirection('none');
 
       sortData.getItems().then(function (data) {
-          /* filter items by category from category parameter */
-          $scope.items = $filter('filter')(data.items, {
-             category: $routeParams.itemCategory
-          });
-          $scope.title = $scope.items[0].category;
-          $scope.page.setTitle($scope.title);
+         /* filter items by category from category parameter */
+         $scope.items = $filter('filter')(data.items, {
+            category: $routeParams.itemCategory
+         });
+         $scope.title = $scope.items[0].category;
+         $scope.page.setTitle($scope.title);
       });
 
    }
@@ -172,7 +179,6 @@ appCtrl.controller('ListCtrl', ['$scope', '$filter', '$routeParams', 'sortData',
 appCtrl.controller('DetailCtrl', ['$scope', '$routeParams', '$filter', '$location', 'sortData', 'Analytics', 
    function ($scope, $routeParams, $filter, $location, sortData, Analytics) {
 
-      //$scope.page.showSubNav(true);
       this.shareOpen = false;
 
       $scope.url = $routeParams.itemUrl;
