@@ -1,13 +1,14 @@
 <section>
 
-   <div layout="row" layout-align="end center">
-      <h1 flex>News and upcoming shows</h1>
-      <md-button ng-href="http://andybeckstudio.blogspot.co.uk/" target="_blank">Studio blog</md-button>
+   <div layout="row" layout-xs="column" layout-align-gt-xs="center center">
+      <h1 flex flex-sm="70" flex-offset-sm="15">News and upcoming shows</h1>
+      <div flex="15">
+         <md-button ng-href="http://andybeckstudio.blogspot.com" target="_blank">Studio blog</md-button>
+      </div>
    </div>
-   
+
    <div ng-repeat="item in items" class="news_item repeat_animation" animate-on-load>
       <h2>{{item.title}}</h2>
       <span ng-bind-html="item.content"></span>
    </div>
-
 </section>
