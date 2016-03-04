@@ -24,6 +24,7 @@ var app = angular.module('app', [
 app.constant('settings', {
    site_title: 'Andy Beck',
    tracking_id: 'UA-74356457-1',
+   items_json: 'data/gallery.json',
    blog_id: '143883877191975751',
    api_key: 'AIzaSyBv-fK-x3-ZvA4CrLiRp4smi_75kd258SM'
 });
@@ -105,80 +106,81 @@ app.directive('animateOnLoad', ['$animateCss', function ($animateCss) {
    return {
       'link': function (scope, element) {
          $animateCss(element, {
-            'event': 'enter',
-            structural: true
+            event: 'enter',
+            structural: true,
+            from: { 'opacity': 0 },
+            to: { 'opacity': 1 }
          }).start();
       }
    };
 }]);
 
-app.directive('clickOutside', ['$document', '$parse', clickOutside]);
-   //github.com/IamAdamJowett/angular-click-outside
+//github.com/IamAdamJowett/angular-click-outside
+app.directive('clickOutside', ['$document', '$parse', 
    function clickOutside($document, $parse) {
-      return {
-         restrict: 'A',
-         link: function ($scope, elem, attr) {
-            var classList = (attr.outsideIfNot !== undefined) ? attr.outsideIfNot.replace(', ', ',').split(',') : [],
-                fn = $parse(attr['clickOutside']);
+   return {
+      restrict: 'A',
+      link: function ($scope, elem, attr) {
+         var classList = (attr.outsideIfNot !== undefined) ? attr.outsideIfNot.replace(', ', ',').split(',') : [],
+               fn = $parse(attr['clickOutside']);
 
-            // add the elements id so it is not counted in the click listening
-            if (attr.id !== undefined) {
-               classList.push(attr.id);
+         // add the elements id so it is not counted in the click listening
+         if (attr.id !== undefined) {
+            classList.push(attr.id);
+         }
+
+         var eventHandler = function (e) {
+
+            //check if our element already hiden
+            if (angular.element(elem).hasClass("ng-hide")) {
+               return;
             }
 
-            var eventHandler = function (e) {
+            var i = 0,
+                  element;
 
-               //check if our element already hiden
-               if (angular.element(elem).hasClass("ng-hide")) {
-                  return;
+            // if there is no click target, no point going on
+            if (!e || !e.target) {
+               return;
+            }
+
+            // loop through the available elements, looking for classes in the class list that might match and so will eat
+            for (element = e.target; element; element = element.parentNode) {
+               var id = element.id,
+                     classNames = element.className,
+                     l = classList.length;
+
+               // Unwrap SVGAnimatedString
+               if (classNames && classNames.baseVal !== undefined) {
+                  classNames = classNames.baseVal;
                }
 
-               var i = 0,
-                   element;
-
-               // if there is no click target, no point going on
-               if (!e || !e.target) {
-                  return;
-               }
-
-               // loop through the available elements, looking for classes in the class list that might match and so will eat
-               for (element = e.target; element; element = element.parentNode) {
-                  var id = element.id,
-                      classNames = element.className,
-                      l = classList.length;
-
-                  // Unwrap SVGAnimatedString
-                  if (classNames && classNames.baseVal !== undefined) {
-                     classNames = classNames.baseVal;
-                  }
-
-                  // loop through the elements id's and classnames looking for exceptions
-                  for (i = 0; i < l; i++) {
-                     // check for id's or classes, but only if they exist in the first place
-                     if ((id !== undefined && id.indexOf(classList[i]) > -1) || (classNames && classNames.indexOf(classList[i]) > -1)) {
-                        // now let's exit out as it is an element that has been defined as being ignored for clicking outside
-                        return;
-                     }
+               // loop through the elements id's and classnames looking for exceptions
+               for (i = 0; i < l; i++) {
+                  // check for id's or classes, but only if they exist in the first place
+                  if ((id !== undefined && id.indexOf(classList[i]) > -1) || (classNames && classNames.indexOf(classList[i]) > -1)) {
+                     // now let's exit out as it is an element that has been defined as being ignored for clicking outside
+                     return;
                   }
                }
+            }
 
-               // if we have got this far, then we are good to go with processing the command passed in via the click-outside attribute
-               return $scope.$apply(function () {
-                  return fn($scope);
-               });
-            };
-
-            // assign the document click handler to a variable so we can un-register it when the directive is destroyed
-            $document.on('click', eventHandler);
-
-            // when the scope is destroyed, clean up the documents click handler as we don't want it hanging around
-            $scope.$on('$destroy', function () {
-               $document.off('click', eventHandler);
+            // if we have got this far, then we are good to go with processing the command passed in via the click-outside attribute
+            return $scope.$apply(function () {
+               return fn($scope);
             });
-         }
-      };
-   }
-;
+         };
+
+         // assign the document click handler to a variable so we can un-register it when the directive is destroyed
+         $document.on('click', eventHandler);
+
+         // when the scope is destroyed, clean up the documents click handler as we don't want it hanging around
+         $scope.$on('$destroy', function () {
+            $document.off('click', eventHandler);
+         });
+      }
+   };
+}]);
 
 
 /* FACTORIES */
@@ -203,18 +205,17 @@ app.factory('utilities', function () {
    }
 });
 
-app.factory('sortData', ['$http', function ($http) {
+app.factory('sortData', ['$http', 'settings', 
+   function ($http, settings) {
    var items = [];
    return {
       getItems: function () {
-         return $http.get('data/gallery.json').then(function (response) {
+         return $http.get(settings.items_json).then(function (response) {
             items = response.data;
-
             /* sort items by date in descending order */
             items.sort(function (a, b) {
                return b.date.localeCompare(a.date);
-            });
-            
+            });            
             return {
                items: items
             };
@@ -226,13 +227,16 @@ app.factory('sortData', ['$http', function ($http) {
 
 
 /* RUN */
-app.run(['$rootScope', 'settings', function ($rootScope, settings) {
+app.run(function (Analytics) { });
+app.run(['$rootScope', 'settings', 
+   function ($rootScope, settings) {
    $rootScope.page = {
       setTitle: function (title) {
          this.title = title + ' | ' + settings.site_title;
       },
       setDirection: function (direction) {
          this.direction = direction;
+         //console.log(direction);
       },
       showSubNav: function (subNavShow) {
          this.subNavShow = subNavShow;
@@ -242,8 +246,6 @@ app.run(['$rootScope', 'settings', function ($rootScope, settings) {
       $rootScope.page.title = current.$$route ? current.$$route.title + ' | ' + settings.site_title : settings.site_title;
    });
 }]);
-
-app.run(function (Analytics) { });
 
 
 /* ANIMATION */
