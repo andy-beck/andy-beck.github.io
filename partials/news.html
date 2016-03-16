@@ -2,7 +2,7 @@
 
    <div layout-xs="column" layout="row" layout-align-gt-xs="start center">
       <h1 flex flex-sm="60" flex-offset-sm="20">News and upcoming shows</h1>
-      <div flex="nogrow" flex-sm="20">
+      <div flex="nogrow" flex-sm="20" hide-xs>
          <md-button ng-href="http://andybeckstudio.blogspot.com" target="_blank">Studio blog</md-button>
       </div>
    </div>
@@ -11,4 +11,7 @@
       <h2>{{item.title}}</h2>
       <span ng-bind-html="item.content"></span>
    </div>
+
+   <md-button ng-href="http://andybeckstudio.blogspot.com" target="_blank" show-xs>Studio blog</md-button>
+
 </section>
