@@ -22,7 +22,7 @@ var app = angular.module('app', [
 
 /* CONSTANTS */
 app.constant('settings', {
-   site_title: 'Andy Beck',
+   site_title: 'Andrew Beck',
    tracking_id: 'UA-74356457-1',
    items_json: 'data/gallery.json',
    blog_id: '143883877191975751',
