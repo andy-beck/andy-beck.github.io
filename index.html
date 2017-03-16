@@ -11,28 +11,31 @@
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.css">
   <link rel="stylesheet" href="/css/theme.css">
 </head>
-<body layout="column" flex="grow" layout-fill ng-cloak>
-   <div layout="column" layout-gt-sm="row" flex="noshrink">
-      <div flex-gt-sm="25">
-         <nav-bar></nav-bar>
-      </div>
-      <div flex-gt-sm="75" ng-class="page.direction" style="position:relative;">
-         <div ng-view class="view" layout="column" flex="grow"></div>
-      </div>
-   </div>
-   <footer></footer>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-messages.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-resource.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-sanitize.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.js"></script>
-  <script src="http://cdn.rawgit.com/keithio/angular-mailchimp/master/angular-mailchimp.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-analytics/1.1.6/angular-google-analytics.min.js"></script>
-  <script src="/js/app.js"></script>
-  <script src="/js/controllers.js"></script>
+<body ng-class="page.background" style="position:relative;">
+    <div class="background"></div>
+    <div class="layout" layout="column" flex="grow" layout-fill ng-cloak>
+        <div layout="column" layout-gt-sm="row" flex="noshrink">
+            <div flex-gt-sm="25">
+                <nav-bar></nav-bar>
+            </div>
+            <div flex-gt-sm="75" ng-class="page.direction" style="position:relative;">
+                <div ng-view class="view" layout="column" flex="grow"></div>
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-sanitize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.js"></script>
+    <script src="http://cdn.rawgit.com/keithio/angular-mailchimp/master/angular-mailchimp.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-analytics/1.1.6/angular-google-analytics.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/controllers.js"></script>
 </body>
 </html>

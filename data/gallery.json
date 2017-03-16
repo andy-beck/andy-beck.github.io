@@ -208,7 +208,17 @@
     "w": "70",
     "availability": ""
   },
-   { "category": "Archive", "url": "ruth-chair-radiator", "title": "Ruth, Chair & Radiator", "image": "Andy-Beck-Ruth-Chair-Radiator", "date": "2012-01-01", "medium": "Oil on linen", "h": "80", "w": "80", "availability": "" },
+  {
+    "category": "Archive",
+    "url": "ruth-chair-radiator",
+    "title": "Ruth, Chair & Radiator",
+    "image": "Andy-Beck-Ruth-Chair-Radiator",
+    "date": "2012-01-01",
+    "medium": "Oil on linen",
+    "h": "80",
+    "w": "80",
+    "availability": "" 
+  },
   {    
     "category": "Archive",
     "url": "street-in-madrid",
@@ -226,7 +236,7 @@
     "title": "Bruton Street",
     "image": "Andy-Beck-Bruton-Street",
     "date": "2012-01-01",
-    "medium": "Oil on board",
+    "medium": "Oil on birch panel",
     "h": "81",
     "w": "122",
     "availability": ""
@@ -237,7 +247,7 @@
     "title": "Grafton Street Corner",
     "image": "Andy-Beck-Grafton-Street-Corner",
     "date": "2012-01-01",
-    "medium": "Oil on board",
+    "medium": "Oil on birch panel",
     "h": "81",
     "w": "122",
     "availability": ""
@@ -262,7 +272,7 @@
     "medium": "Acrylic on linen",
     "h": "100",
     "w": "130",
-    "availability": ""
+    "availability": "sold"
   },
   {    
     "category": "Archive",
@@ -273,7 +283,7 @@
     "medium": "Acrylic on linen",
     "h": "100",
     "w": "130",
-    "availability": ""
+    "availability": "sold"
   },
   {    
     "category": "Archive",
@@ -284,7 +294,7 @@
     "medium": "Oil on linen",
     "h": "120",
     "w": "120",
-    "availability": ""
+    "availability": "sold"
   },
   {    
     "category": "Archive",
@@ -372,72 +382,6 @@
     "medium": "Acrylic on canvas",
     "h": "76",
     "w": "61",
-    "availability": ""
-  },
-  {   
-    "category": "Drawing",
-    "url": "drawing-five",
-    "title": "Drawing Item Five",
-    "image": "five",
-    "date": "2000-05-01",
-    "medium": "Charcoal on paper",
-    "h": "65",
-    "w": "65",
-    "availability": ""
-  },
-  {    
-    "category": "Drawing",
-    "url": "drawing-four",
-    "title": "Drawing Item Four",
-    "image": "four",
-    "date": "2000-04-01",
-    "medium": "Charcoal on paper",
-    "h": "65",
-    "w": "65",
-    "availability": ""
-  },
-  {    
-    "category": "Drawing",
-    "url": "drawing-two",
-    "title": "Drawing Item Two",
-    "image": "two",
-    "date": "2000-02-01",
-    "medium": "Charcoal on paper",
-    "h": "65",
-    "w": "65",
-    "availability": ""
-  },
-  {    
-    "category": "Drawing",
-    "url": "drawing-one",
-    "title": "Drawing Item One",
-    "image": "one",
-    "date": "2000-01-15",
-    "medium": "Charcoal on paper",
-    "h": "65",
-    "w": "65",
-    "availability": ""
-  },
-  {    
-    "category": "Drawing",
-    "url": "drawing-three",
-    "title": "Drawing Item Three",
-    "image": "three",
-    "date": "2000-03-01",
-    "medium": "Charcoal on paper",
-    "h": "65",
-    "w": "65",
-    "availability": ""
-  },
-  {    
-    "category": "Drawing",
-    "url": "drawing-zero",
-    "title": "Drawing Item zero",
-    "image": "zero",
-    "date": "2000-01-01",
-    "medium": "Charcoal on paper",
-    "h": "65",
-    "w": "65",
     "availability": ""
   }
 ]

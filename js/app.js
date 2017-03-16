@@ -228,24 +228,29 @@ app.factory('sortData', ['$http', 'settings',
 
 /* RUN */
 app.run(function (Analytics) { });
-app.run(['$rootScope', 'settings', 
-   function ($rootScope, settings) {
-   $rootScope.page = {
-      setTitle: function (title) {
-         this.title = title + ' | ' + settings.site_title;
-      },
-      setDirection: function (direction) {
-         this.direction = direction;
-         //console.log(direction);
-      },
-      showSubNav: function (subNavShow) {
-         this.subNavShow = subNavShow;
-      }
-   }
-   $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-      $rootScope.page.title = current.$$route ? current.$$route.title + ' | ' + settings.site_title : settings.site_title;
-   });
-}]);
+app.run(['$rootScope', 'settings',
+    function ($rootScope, settings) {
+        $rootScope.page = {
+            setTitle: function (title) {
+                this.title = title + ' | ' + settings.site_title;
+            },
+            setBackground: function (background) {
+                this.background = background;
+            },
+            setDirection: function (direction) {
+                this.direction = direction;
+                //console.log(direction);
+            },
+            showSubNav: function (subNavShow) {
+                this.subNavShow = subNavShow;
+            }
+        }
+        $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+            $rootScope.page.title = current.$$route ? current.$$route.title + ' | ' + settings.site_title : settings.site_title;
+            $rootScope.page.background = current.$$route ? 'none' : 'fullscreen';
+        });
+    }
+]);
 
 
 /* ANIMATION */

@@ -95,7 +95,7 @@ appCtrl.controller('subscribeCtrl', ['$scope', '$mdDialog',
 /* DEFAULT VIEW controller */
 appCtrl.controller('PageCtrl', ['$scope',
    function ($scope) {
-      $scope.page.setDirection('none');
+       $scope.page.setDirection('none');
    }
 ]);
 
