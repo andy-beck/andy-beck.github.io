@@ -23,14 +23,13 @@ $layout-breakpoint-lg:  1920px !default;
 // GLOBAL STYLES
 // -------------------------
 body {
-   font-size: $body-font-size-base;
-   font-family: 'Open Sans', sans-serif;
-   line-height: 1.6;
-   overflow-y: scroll;
-   overflow-x: hidden;
-   padding: 0 $grid-gutter;
-   position: relative;
-   z-index: -2;
+    font-size: $body-font-size-base;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 0 $grid-gutter;
+    z-index: -2;
 }
 
 .layout {
@@ -50,7 +49,7 @@ body {
     background-size: cover;
     transition: opacity .5s ease;
     opacity: 0;
-    .fullscreen &{
+    .fullscreen & {
         opacity: 1;
     }
 }
