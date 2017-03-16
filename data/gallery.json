@@ -1,9 +1,9 @@
 [
   {    
     "category": "Painting",
-    "url": "crocodile",
-    "title": "Crocodile",
-    "image": "Andy-Beck-Crocodile",
+    "url": "restoration-iii",
+    "title": "Restoration III",
+    "image": "Andy-Beck-Restoration-III",
     "date": "2015-12-01",
     "medium": "Oil on linen",
     "h": "60",
@@ -12,9 +12,9 @@
   },
   {    
     "category": "Painting",
-    "url": "deer2",
-    "title": "Deer2",
-    "image": "Andy-Beck-Deer2",
+    "url": "restoration-ii",
+    "title": "Restoration II",
+    "image": "Andy-Beck-Restoration-II",
     "date": "2015-11-01",
     "medium": "Oil on linen",
     "h": "60",
@@ -23,9 +23,9 @@
   },
   {    
     "category": "Painting",
-    "url": "deer1",
-    "title": "Deer1",
-    "image": "Andy-Beck-Deer1",
+    "url": "restoration-i",
+    "title": "Restoration I",
+    "image": "Andy-Beck-Restoration I",
     "date": "2015-10-01",
     "medium": "Oil on linen",
     "h": "60",
