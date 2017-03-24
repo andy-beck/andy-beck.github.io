@@ -36,21 +36,21 @@ body {
     z-index: 0;
     margin: 0 auto !important;
     max-width: 1250px;
-}
-
-.background {
-    z-index: -1;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background: url('../images/home-01.jpg') no-repeat center center fixed;
-    background-size: cover;
-    transition: opacity .5s ease;
-    opacity: 0;
-    .fullscreen & {
-        opacity: 1;
+    &::before {
+        z-index: -1;
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: url('../images/home-01.jpg') no-repeat center center fixed;
+        background-size: cover;
+        transition: opacity .5s ease;
+        opacity: 0;
+        .fullscreen & {
+            opacity: 1;
+        }
     }
 }
 
@@ -143,6 +143,9 @@ md-icon {
          top: 7px;
          position: absolute;
          display: block;
+         .fullscreen & {
+             color: rgba(255,255,255,.95) !important;
+         }
       }
       .navbar_toggle {
          overflow: visible;
@@ -206,7 +209,7 @@ md-icon {
          .md-button {
             @media (max-width: $layout-breakpoint-xs - 1) {
                background-color: $gray-lighter;
-               padding: 2px 0;
+               //padding: 2px 0;
                width: 100%;
                display: block;
             }
@@ -243,7 +246,7 @@ md-icon {
       .navbar_header {
          float: none;
          .navbar_brand {
-            margin: 25px 0;
+            margin: 25px 6px;
          }
          .navbar_toggle {
             display: none;
@@ -267,14 +270,14 @@ md-icon {
                line-height: 36px;
                min-width: 40px;
                text-align: left;
-               padding: 0;
+               //padding: 0;
                &:hover {
                   color: $gray-dark;
                   background-color: transparent;
                }
             }
             &.social {
-               margin-left: -10px;
+               //margin-left: -10px;
                .md-button {
                   text-align: center;
                }
@@ -349,13 +352,8 @@ md-icon {
 }
 
 .chevron {
-    position: relative;
-    /*display: inline-block !important;
-    vertical-align: text-top;	   
-    padding: 5px;*/
-    &::before {
+    &::after {
 	    position: relative;
-        position: absolute;
 	    content: '';
 	    display: inline-block;
 	    border-style: solid;
@@ -363,10 +361,8 @@ md-icon {
 	    height: 5px;
 	    width: 5px;
 	    transform: rotate(135deg);
-	    //vertical-align: text-top;
-	    //margin: 4px 2px 0 8px;
-        top: 5px;
-        left: 5px;
+	    vertical-align: middle;
+	    margin: -6px 2px 0 8px;
     }
 }
 
