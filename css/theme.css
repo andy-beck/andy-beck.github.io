@@ -80,7 +80,6 @@ md-icon svg { position: relative; top: -1px; width: 24px; height: 24px; }
   .navbar .navbar_header .navbar_brand { margin: 25px 6px; }
   .navbar .navbar_header .navbar_toggle { display: none; }
   .navbar .navbar_nav { display: block !important; margin: 0; }
-  .navbar .navbar_nav ul { margin-left: 10px; }
   .navbar .navbar_nav li { line-height: 0; }
   .navbar .navbar_nav li .md-ink-ripple { line-height: 36px; max-height: 36px; }
   .navbar .navbar_nav li .md-button { overflow: visible; line-height: 36px; min-width: 40px; text-align: left; }
@@ -96,7 +95,7 @@ md-icon svg { position: relative; top: -1px; width: 24px; height: 24px; }
   .navbar .navbar_nav > li { display: inline-block; }
   .navbar .navbar_nav > li > .md-button { margin: 0 0 0 30px; }
   .navbar .navbar_nav > li:first-of-type > .md-button { margin: 0 10px 0 0; }
-  .navbar .navbar_nav > li ul { position: absolute; margin-left: -12px; z-index: 10; text-align: left; background-color: white; box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }
+  .navbar .navbar_nav > li ul { position: absolute; z-index: 10; text-align: left; background-color: white; box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12); }
   .fullscreen .navbar .navbar_nav > li ul { background-color: rgba(0, 0, 0, 0.25); }
   .navbar .navbar_nav > li ul .md-button { padding: 0 16px; } }
 

@@ -256,7 +256,7 @@ md-icon {
          display: block !important; // show on load
          margin: 0;
          ul {
-            margin-left: 10px;
+            //margin-left: 10px;
          }
          li {
             line-height: 0;
@@ -324,7 +324,7 @@ md-icon {
             }
             ul {
                position: absolute;
-               margin-left: -12px;
+               //margin-left: -12px;
                z-index: 10;
                text-align: left;
                background-color: white;

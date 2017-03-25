@@ -1,86 +1,90 @@
 <section>
-  
-  <h1>Contact</h1>
 
-  <p>For all inquiries <a href="mailto:andybeckstudio@gmail.com">andybeckstudio@gmail.com</a></p>
+    <h1>Contact</h1>
 
-  <p><br /></p>
+    <p>
+        For all inquiries:<br />
+        <a href="mailto:andybeckstudio@gmail.com">andybeckstudio@gmail.com</a><br />
+        +1 613 400 7915
+    </p>
 
-  <form name="ContactForm" ng-controller="ContactCtrl">
-    <div ng-hide="contact.result === 'success'">
-      
-      <!--<div>{{contact.NAME}}, {{contact.FNAME}}, {{contact.LNAME}}</div>-->
-      <input ng-model="contact.FNAME" type="hidden" name="fname" ng-maxlength="50" placeholder="first">
-      <input ng-model="contact.LNAME" type="hidden" name="lname" ng-maxlength="50" placeholder="last">
+    <p><br /></p>
 
-      <md-input-container class="md-block">
-        <label>Name</label>
-        <input ng-model="contact.NAME" type="text" ng-maxlength="100" ng-change="change()">
-      </md-input-container>
+    <form name="ContactForm" ng-controller="ContactCtrl">
+        <div ng-hide="contact.result === 'success'">
 
-      <md-input-container class="md-block">
-        <label>Email (required)</label>
-        <input ng-model="contact.EMAIL" type="email" name="email" required minlength="8" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
-        <div ng-messages="ContactForm.email.$error" role="alert">
-          <div ng-message-exp="['required', 'minlength', 'maxlength', 'ng-pattern']">
-            Your email must be between 8 and 100 characters long and look like an e-mail address.
-          </div>
+            <!--<div>{{contact.NAME}}, {{contact.FNAME}}, {{contact.LNAME}}</div>-->
+            <input ng-model="contact.FNAME" type="hidden" name="fname" ng-maxlength="50" placeholder="first">
+            <input ng-model="contact.LNAME" type="hidden" name="lname" ng-maxlength="50" placeholder="last">
+
+            <md-input-container class="md-block">
+                <label>Name</label>
+                <input ng-model="contact.NAME" type="text" ng-maxlength="100" ng-change="change()">
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>Email (required)</label>
+                <input ng-model="contact.EMAIL" type="email" name="email" required minlength="8" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                <div ng-messages="ContactForm.email.$error" role="alert">
+                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'ng-pattern']">
+                        Your email must be between 8 and 100 characters long and look like an e-mail address.
+                    </div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>Message</label>
+                <textarea ng-model="contact.MESSAGE" name="message" required md-minlength="10" md-maxlength="2000"></textarea>
+                <div ng-messages="ContactForm.message.$error" role="alert">
+                    <div ng-message="required">Please enter a message.</div>
+                    <div ng-message md-message="md-minlength">The message has to be more than 10 characters long.</div>
+                    <div ng-message md-message="md-maxlength">The message has to be less than 2000 characters long.</div>
+                </div>
+            </md-input-container>
+
+            <md-checkbox md-no-ink aria-label="Checkbox No Ink" class="md-primary">
+                Subscribe to newsletter for updates & future exhibitions
+            </md-checkbox>
+
+            <md-input-container class="md-block">
+                <md-button class="md-raised" ng-disabled="ContactForm.$invalid" ng-click="addMessage(contact)">Send</md-button>
+            </md-input-container>
         </div>
-      </md-input-container>
 
-      <md-input-container class="md-block">
-        <label>Message</label>
-        <textarea ng-model="contact.MESSAGE" name="message" required md-minlength="10" md-maxlength="2000"></textarea>
-        <div ng-messages="ContactForm.message.$error" role="alert">
-          <div ng-message="required">Please enter a message.</div>
-          <div ng-message md-message="md-minlength">The message has to be more than 10 characters long.</div>
-          <div ng-message md-message="md-maxlength">The message has to be less than 2000 characters long.</div>
+        <!-- Show error message if MailChimp unsuccessfully added the email to the list. -->
+        <div ng-show="contact.result === 'error'" ng-cloak>
+            <span ng-bind-html="contact.errorMessage"></span>
         </div>
+
+        <!-- Show success message if MailChimp returned successfully. -->
+        <div ng-show="contact.result === 'success'" ng-cloak>
+            <span ng-bind-html="contact.successMessage"></span>
+        </div>
+    </form>
+
+    <!--<div layout-gt-sm="row">
+      <md-input-container class="md-block" flex-gt-sm>
+        <label for="mce-FNAME">First name</label>
+        <input type="text" id="mce-FNAME" name="FNAME">
       </md-input-container>
-
-      <md-checkbox md-no-ink aria-label="Checkbox No Ink" class="md-primary">
-        Subscribe to newsletter for updates & future exhibitions
-      </md-checkbox>
-
-      <md-input-container class="md-block">
-        <md-button class="md-raised" ng-disabled="ContactForm.$invalid" ng-click="addMessage(contact)">Send</md-button>
+      <md-input-container class="md-block" flex-gt-sm>
+        <label for="mce-LNAME">Last name</label>
+        <input type="text" id="mce-LNAME" name="LNAME">
       </md-input-container>
     </div>
-
-    <!-- Show error message if MailChimp unsuccessfully added the email to the list. -->
-    <div ng-show="contact.result === 'error'" ng-cloak>
-      <span ng-bind-html="contact.errorMessage"></span>
-    </div>
-
-    <!-- Show success message if MailChimp returned successfully. -->
-    <div ng-show="contact.result === 'success'" ng-cloak>
-      <span ng-bind-html="contact.successMessage"></span>
-    </div>
-  </form>
-
-  <!--<div layout-gt-sm="row">
-    <md-input-container class="md-block" flex-gt-sm>
-      <label for="mce-FNAME">First name</label>
-      <input type="text" id="mce-FNAME" name="FNAME">
+    <md-input-container class="md-block">
+      <label for="mce-EMAIL">Email (required)</label>
+      <input type="email" ng-required="true" id="mce-EMAIL" name="EMAIL" />
     </md-input-container>
-    <md-input-container class="md-block" flex-gt-sm>
-      <label for="mce-LNAME">Last name</label>
-      <input type="text" id="mce-LNAME" name="LNAME">
+    <md-input-container class="md-block">
+      <label for="MESSAGE">Message</label>
+      <textarea id="MESSAGE" name="MESSAGE"></textarea>
     </md-input-container>
-  </div>
-  <md-input-container class="md-block">
-    <label for="mce-EMAIL">Email (required)</label>
-    <input type="email" ng-required="true" id="mce-EMAIL" name="EMAIL" />
-  </md-input-container>
-  <md-input-container class="md-block">
-    <label for="MESSAGE">Message</label>
-    <textarea id="MESSAGE" name="MESSAGE"></textarea>
-  </md-input-container>
-  <md-checkbox md-no-ink aria-label="Checkbox No Ink" class="md-primary">
-    Subscribe to newsletter for updates & future exhibitions
-  </md-checkbox>
-  <md-input-container class="md-block">
-    <md-button class="md-raised">Send</md-button>
-  </md-input-container>-->
+    <md-checkbox md-no-ink aria-label="Checkbox No Ink" class="md-primary">
+      Subscribe to newsletter for updates & future exhibitions
+    </md-checkbox>
+    <md-input-container class="md-block">
+      <md-button class="md-raised">Send</md-button>
+    </md-input-container>-->
 
 </section>
