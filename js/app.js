@@ -25,7 +25,7 @@ app.constant('settings', {
    site_title: 'Andrew Beck',
    tracking_id: 'UA-74356457-1',
    items_json: 'data/gallery.json',
-   blog_id: '143883877191975751',
+   blog_id: '7572653541928162874',
    api_key: 'AIzaSyBv-fK-x3-ZvA4CrLiRp4smi_75kd258SM'
 });
 
