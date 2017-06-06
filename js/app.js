@@ -26,7 +26,7 @@ app.constant('settings', {
    tracking_id: 'UA-74356457-1',
    items_json: 'data/gallery.json',
    blog_id: '7572653541928162874',
-   api_key: 'AIzaSyBv-fK-x3-ZvA4CrLiRp4smi_75kd258SM'
+   api_key: 'AIzaSyBaPau7U6NxLkNbdGQ9oGXceBjLuW_SVAU'
 });
 
 
