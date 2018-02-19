@@ -1,17 +1,16 @@
-<section>
+<section class="news">
+    <div layout-xs="column" layout="row" layout-align-gt-xs="start center">
+        <h1 flex flex-sm="60" flex-offset-sm="20">News and upcoming shows</h1>
+        <div flex="nogrow" flex-sm="20" hide-xs>
+            <md-button ng-href="http://andrewbeckart.blogspot.com" target="_blank">Studio blog</md-button>
+        </div>
+    </div>
 
-   <div layout-xs="column" layout="row" layout-align-gt-xs="start center">
-      <h1 flex flex-sm="60" flex-offset-sm="20">News and upcoming shows</h1>
-      <div flex="nogrow" flex-sm="20" hide-xs>
-         <md-button ng-href="http://andybeckstudio.blogspot.com" target="_blank">Studio blog</md-button>
-      </div>
-   </div>
-
-   <div ng-repeat="item in items" class="news_item repeat_animation" animate-on-load>
-      <h2>{{item.title}}</h2>
-      <span ng-bind-html="item.content"></span>
-   </div>
-
-   <md-button ng-href="http://andybeckstudio.blogspot.com" target="_blank" show-xs>Studio blog</md-button>
-
+    <div ng-repeat="item in items" class="news_item repeat_animation" ng-class="{first:$first}" animate-on-load>
+        <h2>{{item.title}}</h2>
+        <em>{{item.published | date:'d MMMM yyyy'}}</em>
+        <br /><br />
+        <span ng-bind-html="item.content"></span>
+    </div>
+    <md-button ng-href="http://andrewbeckart.blogspot.com" target="_blank" show-xs>Studio blog</md-button>
 </section>

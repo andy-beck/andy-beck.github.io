@@ -3,7 +3,7 @@
    <h1 ng-bind="title"></h1>
 
   <div class="grid" layout="row" layout-wrap>
-      <div class="thumb repeat_animation" flex-xs="100" flex="33" ng-repeat="item in items" animate-on-load>
+      <div class="thumb repeat_animation" flex="50" flex-gt-xs="33" ng-repeat="item in items" animate-on-load>
          <a href="/gallery/{{item.category | lowercase}}/{{item.url}}">
          <div class="spinner"></div>
          <img ng-src="images/thumbs/{{item.image}}.jpg" alt="{{item.title}}" onload="imgLoaded(this)" />
