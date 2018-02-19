@@ -1,41 +1,50 @@
 ﻿<!doctype html>
 <html lang="en" ng-app="app">
 <head>
-  <meta charset="utf-8" />
-  <base href="/">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Andrew Beck">
-  <title data-ng-bind="page.title"></title>
-  <link rel="stylesheet" href="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.3/angular-material.min.css">
-  <link rel="stylesheet" href="/css/theme.css">
+    <meta charset="utf-8" />
+    <base href="/">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Andrew Beck">
+    <title data-ng-bind="page.title"></title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.7/angular-material.min.css">
+    <link rel="stylesheet" href="/css/theme.min.css">
 </head>
 <body ng-class="page.background">
-    <div class="layout" layout="column" flex="grow" layout-fill ng-cloak>
-        <div layout="column" layout-gt-sm="row" flex="noshrink">
-            <div flex-gt-sm="25">
+    
+    <div class="slideshow" ng-slideshow="[ 'images/home-1.jpg', 'images/home-2.jpg', 'images/home-3.jpg' ]" interval="5000"></div>
+
+    <div class="layout" layout="column" layout-fill ng-cloak>
+
+        <div flex layout="column" layout-gt-sm="row" layout-align="start stretch" layout-align-gt-sm="center stretch">
+
+            <div flex="none" flex-gt-sm="20">
                 <nav-bar></nav-bar>
             </div>
-            <div flex-gt-sm="75" ng-class="page.direction" style="position:relative;">
-                <div ng-view class="view" layout="column" flex="grow"></div>
+
+            <div class="view-wrapper" flex flex-gt-sm="80" layout-align="center stretch" layout="row" ng-class="page.direction">
+                <div ng-view class="view" flex layout="column"></div>
             </div>
+
         </div>
+
         <footer></footer>
+
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-aria.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-messages.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-resource.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-sanitize.min.js"></script>
-    <!--script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.js"></script-->
-    <script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.3/angular-material.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.7/angular-material.min.js"></script>
     <script src="https://cdn.rawgit.com/keithio/angular-mailchimp/master/angular-mailchimp.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-analytics/1.1.6/angular-google-analytics.min.js"></script>
-    <script src="/js/app.js"></script>
-    <script src="/js/controllers.js"></script>
+    <script src="/js/app.min.js"></script>
+    <script src="/js/controllers.min.js"></script>
 </body>
 </html>
